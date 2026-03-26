@@ -15,7 +15,7 @@ body {
 
 /* --- HEADER --- */
 header {
-    background-color: #3b8b57; /* Warna hijau solid di bagian atas */
+    background:linear-gradient(135deg, #2a7342 0%, #0e3b1c 100%); /* Warna hijau solid di bagian atas */
     height: 120px;
     width: 100%;
 }
@@ -53,7 +53,7 @@ main {
 }
 
 .title {
-    color: #38955b;
+    color: #36955C;
     font-size: 28px;
     font-style: italic;
     font-weight: 800;
@@ -93,7 +93,7 @@ main {
     padding: 10px;
     border: none;
     border-radius: 8px;
-    background-color: #38955b; /* Warna hijau tombol */
+    background-color: #36955C; /* Warna hijau tombol */
     color: white;
     font-size: 14px;
     font-weight: 700;

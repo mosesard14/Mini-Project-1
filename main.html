@@ -1,12 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Utama</title>
+    <title>Beranda Donasi</title>
+    <link rel="stylesheet" href="beranda.css">
 </head>
 <body>
-    <h1>Selamat datang di main</h1>
-    <a href="login.html">Kembali ke Login</a>
+
+    <div class="container">
+        <header class="banner">
+            <div class="banner-content">
+                <h1>Buka Donasi,<br>Beri Donasi</h1>
+                <button class="btn-main-donasi">+ Buka Donasi</button>
+            </div>
+            <div class="banner-overlay"></div>
+        </header>
+
+        <section class="search-section">
+            <br><br>
+            <label>Cari Berita</label>
+            <div class="search-bar">
+                <input type="text" placeholder="">
+                <button class="btn-search">Cari 🔍</button>
+            </div>
+        </section>
+
+        <section class="content-group">
+            <h3>Sedang Trend 🔥</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <span class="tag">#Bencana</span>
+                        <button class="btn-card-donasi">Donasi</button>
+                    </div>
+                    <div class="card-footer">
+                        <p>Longsor di Desa Awikwok</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('assets/contoh2.jpg');">
+                        <span class="tag">#Bencana</span>
+                        <button class="btn-card-donasi">Donasi</button>
+                    </div>
+                    <div class="card-footer">
+                        <p>Banjir bandang di kecamatan Adalah</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
+                        <span class="tag">#PantiAsuhan</span>
+                        <button class="btn-card-donasi">Donasi</button>
+                    </div>
+                    <div class="card-footer">
+                        <p>Panti Asuhan AL-Amin, membutuhkan..</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
