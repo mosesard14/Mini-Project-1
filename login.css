@@ -1,0 +1,159 @@
+/* Reset dasar untuk menghapus margin dan padding bawaan browser */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5; /* Warna background luar putih tulang/abu sangat muda */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- HEADER --- */
+header {
+    background-color: #3b8b57; /* Warna hijau solid di bagian atas */
+    height: 120px;
+    width: 100%;
+}
+
+/* --- MAIN (Area Tengah) --- */
+main {
+    flex: 1; /* Membuat area ini mengisi sisa ruang antara header & footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -60px; /* Menarik card sedikit ke atas agar tumpang tindih dengan header */
+    padding: 20px;
+}
+
+/* Container utama (Card) */
+.card-container {
+    display: flex;
+    width: 800px;
+    height: 450px;
+    background-color: transparent;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+    /* Mencegah isi keluar dari border-radius */
+    overflow: hidden; 
+}
+
+/* --- BAGIAN KIRI (Form) --- */
+.card-left {
+    background-color: #e5e5e5; /* Warna abu-abu muda */
+    width: 50%;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    color: #38955b;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 800;
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.input-group label {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #cfcfcf; /* Warna abu-abu input */
+    outline: none;
+    font-size: 14px;
+}
+
+.btn-masuk {
+    width: calc(100% - 30px);
+    margin-left: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #38955b; /* Warna hijau tombol */
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    font-style: italic;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-masuk:hover {
+    background-color: #2c7a48;
+}
+
+.link-container {
+    text-align: center;
+    margin-top: 15px;
+    width: calc(100% - 30px);
+    margin-left: 10px;
+}
+
+.link-daftar {
+    color: #38955b;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.link-daftar:hover {
+    text-decoration: underline;
+}
+
+/* --- BAGIAN KANAN (Welcome) --- */
+.card-right {
+    background: linear-gradient(135deg, #2a7342 0%, #0e3b1c 100%); /* Gradien hijau gelap */
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+    color: white;
+}
+
+.welcome-title {
+    font-size: 46px;
+    line-height: 1.1;
+    font-style: italic;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.welcome-text {
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* --- FOOTER --- */
+footer {
+    height: 60px;
+    width: 100%;
+}
