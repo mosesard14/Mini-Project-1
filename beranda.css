@@ -140,6 +140,7 @@ body {
     border-radius: 15px;
     font-size: 0.8rem;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .card-footer {
