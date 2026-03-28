@@ -10,55 +10,109 @@
 
     <div class="container">
         <header class="banner">
-            <div class="banner-content">
-                <h1>Buka Donasi,<br>Beri Donasi</h1>
-                <button class="btn-main-donasi">+ Buka Donasi</button>
-            </div>
-            <div class="banner-overlay"></div>
-        </header>
+                <div class="banner-content">
+                    <h1>Buka Donasi,<br>Beri Donasi</h1>
+                    <button class="btn-main-donasi">+ Buka Donasi</button>
+                </div>
+                <div class="banner-overlay"></div>
+            </header>
 
-        <section class="search-section">
-            <br><br>
-            <label>Cari Berita</label>
-            <div class="search-bar">
-                <input type="text" placeholder="">
-                <button class="btn-search">Cari 🔍</button>
-            </div>
-        </section>
+            <section class="search-section">
+                <br><br>
+                <label>Cari Berita</label>
+                <div class="search-bar">
+                    <input type="text" placeholder="">
+                    <button class="btn-search">Cari 🔍</button>
+                </div>
+            </section>
 
-        <section class="content-group">
-            <h3>Sedang Trend 🔥</h3>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
-                        <span class="tag">#Bencana</span>
-                        <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+            <div class="filter-wrapper">
+        
+                <input type="radio" id="filter-semua" name="kategori" checked>
+                <input type="radio" id="filter-bencana" name="kategori">
+                <input type="radio" id="filter-pendidikan" name="kategori">
+                <input type="radio" id="filter-kesehatan" name="kategori">
+                <input type="radio" id="filter-fasilitas" name="kategori">
+                
+                <section class="content-group">
+                    <h3>Sedang Trend 🔥</h3>
+
+                    <div class="filter-controls">
+                        <label for="filter-semua">Semua</label>
+                        <label for="filter-bencana">Bencana Alam</label>
+                        <label for="filter-pendidikan">Pendidikan</label>
+                        <label for="filter-kesehatan">Kesehatan</label>
+                        <label for="filter-fasilitas">Fasilitas Umum</label>
                     </div>
-                    <div class="card-footer">
-                        <p>Longsor di Desa Awikwok</p>
+
+                <div class="card-grid">
+                    <div class="card item-bencana">
+                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                            <span class="tag">#Bencana</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Longsor di Desa Awikwok</p>
+                        </div>
+                    </div>
+                    <div class="card item-bencana">
+                        <div class="card-img" style="background-image: url('assets/contoh2.jpg');">
+                            <span class="tag">#Bencana</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Banjir bandang di kecamatan Adalah</p>
+                        </div>
+                    </div>
+                    <div class="card item-pendidikan">
+                        <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
+                            <span class="tag">#Pendidikan</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Panti Asuhan AL-Amin, membutuhkan..</p>
+                        </div>
+                    </div>
+                    <div class="card item-kesehatan">
+                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                            <span class="tag">#KesehatanLingkungan</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Bantuan Air bersih</p>
+                        </div>
+                    </div>
+                    <div class="card item-pendidikan">
+                        <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
+                            <span class="tag">#Pendidikan</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Panti Asuhan AL-Amin, membutuhkan..</p>
+                        </div>
+                    </div>
+                    <div class="card item-fasilitas">
+                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                            <span class="tag">#FasilitasUmum</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Perbaikan Jembatan Desa Putus</p>
+                        </div>
+                    </div>
+                    <div class="card item-fasilitas">
+                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                            <span class="tag">#FasilitasUmum</span>
+                            <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
+                        </div>
+                        <div class="card-footer">
+                            <p>Perbaikan Jembatan Desa Putus</p>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('assets/contoh2.jpg');">
-                        <span class="tag">#Bencana</span>
-                        <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
-                    </div>
-                    <div class="card-footer">
-                        <p>Banjir bandang di kecamatan Adalah</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
-                        <span class="tag">#PantiAsuhan</span>
-                        <a href="halamanDetail.html" class="btn-card-donasi">Detail</a>                   
-                    </div>
-                    <div class="card-footer">
-                        <p>Panti Asuhan AL-Amin, membutuhkan..</p>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
-
+        </div>
     </div>
 
 </body>
