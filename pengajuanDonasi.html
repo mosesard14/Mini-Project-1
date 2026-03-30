@@ -4,8 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengajuan Donasi</title>
+    <link rel="stylesheet" href="pengajuanDonasi.css">
 </head>
 <body>
-    <h1>Ini untuk pengajuan donasi</h1>
+    
+    <div class="container">
+        <header class="header-image">
+            <img src="assets/contoh1.jpg" alt="Anak-anak">
+            <a href="#" class="btn-baca-berita">Baca Berita 📖</a>
+            <h1>Detail Pengajuan Donasi</h1>
+        </header>
+        <br>
+        <section class="stats-box">
+            <div class="stats-row">
+                <div class="stat-item">
+                    <p class="label">Terkumpul</p>
+                    <h2 class="amount primary">Rp 200.500.000</h2>
+                </div>
+                <div class="stat-item">
+                    <p class="label">Dari</p>
+                    <h2 class="amount secondary">Rp 500.000.000</h2>
+                </div>
+            </div>
+            <div class="fundraiser-bar">
+                <p>Penggalang Dana : <strong>adalah..foundation</strong></p>
+            </div>
+        </section>
+
+        <section class="donation-form">
+            <div class="form-group">
+                <label>Nama Donatur</label>
+                <div class="input-with-toggle">
+                    <input type="text" placeholder="Masukkan nama Anda">
+                    <div class="toggle-container">
+                        <span>Anonymus</span>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tambahkan Komentar <small>(*opsional)</small></label>
+                <input type="text" placeholder="Tulis pesan penyemangat...">
+            </div>
+
+            <div class="form-group">
+                <label>Opsi Pembayaran</label>
+                <div class="payment-options">
+                    <button class="pay-btn">QRIS</button>
+                    <button class="pay-btn">Transfer</button>
+                    <button class="pay-btn">E-Wallet</button>
+                    <button class="pay-btn">Virtual Acc</button>
+                </div>
+            </div>
+            
+            <button class="btn-submit-donasi">Kirim Donasi Sekarang</button>
+        </section>
+    </div>
 </body>
 </html>
