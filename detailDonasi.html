@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Halaman Donasi</title>
+  <link rel="stylesheet" href="detailDonasi.css"/>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <!-- Ganti src dengan foto banner kampanye -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Indonesian_children_at_school.jpg/1280px-Indonesian_children_at_school.jpg" alt="Banner Kampanye" onerror="this.style.background='#2e7d32';this.removeAttribute('src')"/>
+
+  <!-- Tombol Kembali (menggantikan ikon tiga garis) -->
+  <a href="main.html" class="btn-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+    Kembali
+  </a>
+
+  <a href="PengajuanDonasi.html" class="btn-donasi">Donasi</a>
+</div>
+
+<!-- ── CONTAINER ── -->
+<div class="container">
+
+  <!-- Info Card -->
+  <div class="info-card">
+    <h1>Judul Beritanyaaa</h1>
+    <p class="dibuka">
+      <span class="label">Dibuka Hinngga</span>
+      <span class="date"> 16 Juli 2026</span>
+    </p>
+    <div class="penyelenggara-box">
+      Penyelenggara : <span>yourname</span>
+    </div>
+  </div>
+
+  <!-- Two Column -->
+  <div class="two-col">
+
+    <!-- LEFT: Stats + Donatur -->
+    <div>
+      <div class="stats-card">
+        <p class="label-stat">Terkumpul</p>
+        <p class="value-green">Rp 243.276.519</p>
+
+        <div class="progress-wrap">
+          <div class="progress-fill"></div>
+        </div>
+
+        <p class="label-dari">Dari</p>
+        <p class="value-dari">Rp 500.000.000</p>
+
+        <div class="donatur-header">Daftar donatur</div>
+
+        <div class="donatur-list">
+
+          <!-- Donatur 1 -->
+          <div>
+            <p class="donatur-date">20/04/2026</p>
+            <div class="donatur-item">
+              <div class="donatur-row">
+                <div class="avatar green">S</div>
+                <span class="donatur-name">Siapa nih 123</span>
+                <span class="donatur-amount">Rp 200.000,00</span>
+              </div>
+              <p class="donatur-msg">Semoga membantu yaa....</p>
+            </div>
+          </div>
+
+          <!-- Donatur 2 -->
+          <div>
+            <p class="donatur-date">20/04/2026</p>
+            <div class="donatur-item">
+              <div class="donatur-row">
+                <div class="avatar dark">A</div>
+                <span class="donatur-name">Anonymus</span>
+                <span class="donatur-amount">Rp 1.000.000,00</span>
+              </div>
+              <p class="donatur-msg">Gak bisa ngasih banyak, semoga cukup membantu..</p>
+            </div>
+          </div>
+
+          <!-- Donatur 3 -->
+          <div>
+            <p class="donatur-date">20/04/2026</p>
+            <div class="donatur-item">
+              <div class="donatur-row">
+                <div class="avatar gold">N</div>
+                <span class="donatur-name">Nona Manis</span>
+                <span class="donatur-amount">Rp 500.000,00</span>
+              </div>
+              <p class="donatur-msg">Gak bisa ngasih banyak, semoga cukup membantu..</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Photo + Description -->
+    <div class="detail-card">
+      <!-- Ganti src dengan foto kampanye -->
+      <img class="campaign-img"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Indonesian_children_at_school.jpg/1280px-Indonesian_children_at_school.jpg"
+          alt="Foto Kampanye"/>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
