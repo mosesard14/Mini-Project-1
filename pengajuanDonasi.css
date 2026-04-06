@@ -29,7 +29,6 @@ body {
 }
 
 .btn-back {
-<<<<<<< HEAD
   position: absolute;
   top: 18px;
   left: 18px;
@@ -59,38 +58,6 @@ body {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
-}
-
-.btn-baca-berita {
-    position: absolute;
-    top: 18px;
-    left: 18px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.18);
-    border: 2px solid rgba(255, 255, 255, 0.55);
-    color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 7px 16px 7px 10px;
-    border-radius: 30px;
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-    transition: background 0.2s, transform 0.15s;
-    text-decoration: none;
-}
-
-.btn-back:hover {
-    background: rgba(255, 255, 255, 0.32);
-    transform: translateX(-2px);
-}
-
-.btn-back svg {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
 }
 
 .container {
@@ -182,13 +149,51 @@ body {
 input[type="text"] {
     width: 100%;
     padding: 12px;
-    border: none;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
-    background-color: #9e9e9e;
-    color: white;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
-input[type="text"]::placeholder { color: #ccc; }
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #a7a7a7;
+    margin-bottom: 25px;
+}
+
+input[type="file"]::file-selector-button {
+    width: 100px;
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #218838;
+}
+
+input[type="text"]::placeholder { color: #a7a7a7; }
+input[type="number"]::placeholder { color: #a7a7a7; }
+input[type="file"]::placeholder { color: #a7a7a7; }
+
 
 .input-with-toggle {
     display: flex;
