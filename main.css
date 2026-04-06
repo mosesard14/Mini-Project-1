@@ -15,9 +15,8 @@ body {
     margin: 0 auto;
 }
 
-/* Hero Banner */
 .banner {
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/beranda.jpg'); /* Ganti dengan gambar anak-anak */
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('assets/beranda.jpg'); 
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -28,7 +27,7 @@ body {
     color: white;
     position: relative;
     margin-bottom: 30px;
-    box-shadow: #252525 0px 3px 7px 3px; /* Efek bayangan hijau */
+    box-shadow: #252525 0px 3px 7px 3px; 
 }
 
 .banner-overlay {
@@ -37,7 +36,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background:linear-gradient(135deg, #36955C 0%, #244d31 100%); /* Lapisan gelap untuk meningkatkan kontras teks */
+    background:linear-gradient(135deg, #36955C 0%, #244d31 100%); 
     z-index: -1;
     border-radius: 20px;
 }
@@ -59,12 +58,12 @@ body {
     font-weight: bold;
 }
 
-/* Search Bar */
 .search-section {
     margin-bottom: 30px;
 }
 
 .search-section label {
+    font-size: 18px;
     color: #36955C;
     font-weight: bold;
     display: block;
@@ -82,6 +81,7 @@ body {
     background-color: #c2c0c0;
     border-radius: 10px 0 0 10px;
     padding: 0 15px;
+    color: #565656;
 }
 
 .btn-search {
@@ -93,7 +93,6 @@ body {
     cursor: pointer;
 }
 
-/* filter */
 .filter-controls {
     display: flex;
     gap: 10px;
@@ -115,12 +114,10 @@ body {
     background-color: #d1d1d1;
 }
 
-/* 1. Sembunyikan radio buttons asli */
 input[type="radio"][name="kategori"] {
     display: none;
 }
 
-/* 2. Beri warna hijau pada tombol label saat radio button terkait aktif */
 #filter-semua:checked ~ .content-group .filter-controls label[for="filter-semua"],
 #filter-bencana:checked ~ .content-group .filter-controls label[for="filter-bencana"],
 #filter-pendidikan:checked ~ .content-group .filter-controls label[for="filter-pendidikan"],
@@ -130,7 +127,6 @@ input[type="radio"][name="kategori"] {
     color: white;
 }
 
-/* 3. Sembunyikan SEMUA card ketika salah satu tombol spesifik diklik (kecuali 'Semua') */
 #filter-bencana:checked ~ .content-group .card,
 #filter-pendidikan:checked ~ .content-group .card,
 #filter-kesehatan:checked ~ .content-group .card,
@@ -138,7 +134,6 @@ input[type="radio"][name="kategori"] {
     display: none;
 }
 
-/* 4. Tampilkan kembali HANYA card yang sesuai dengan class pilihannya */
 #filter-bencana:checked ~ .content-group .item-bencana,
 #filter-pendidikan:checked ~ .content-group .item-pendidikan,
 #filter-kesehatan:checked ~ .content-group .item-kesehatan,
@@ -146,7 +141,37 @@ input[type="radio"][name="kategori"] {
     display: block;
 }
 
-/* Grid Konten */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #36955C;
+    margin-bottom: 6px;
+}
+
+.form-group input,.form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #565656;
+    font-weight: bold;
+    box-sizing: border-box;
+    background-color: #c2c0c0;
+    margin-bottom: 15px;
+}
+
+.form-group input:focus,.form-group select:focus {
+    outline: none;
+    border: 3px solid #36955C;
+    background-color: #ffffff;
+}
+
 .content-group h3 {
     color: #36955C;
     margin-bottom: 15px;
@@ -160,11 +185,10 @@ input[type="radio"][name="kategori"] {
     padding-top: 15px;
 }
 
-/* Card Style */
 .card {
     border-radius: 20px;
     overflow: hidden;
-    background: #36955C; /* Warna hijau bawah */
+    background: #36955C; 
 }
 
 .card-img {
@@ -192,6 +216,69 @@ input[type="radio"][name="kategori"] {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 }
 
+.card-footer .label-stat {
+    font-size: 10px;
+    font-weight: 800;
+    font-style: italic;
+    color: #e1e1e1;
+    margin-bottom: 3px;
+}
+
+.card-footer .value-terkumpul {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 3px;
+    
+}
+
+.card-footer .label-dari {
+    clear: right;
+    font-size: 10px;
+    font-weight: 800;
+    font-style: italic;
+    color: #b8b8b8;
+    margin-bottom: 1px;
+}
+
+.br-card {
+    clear: both;
+    display: block;
+}
+
+.card-footer .value-dari {    
+    clear: left;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    color: #b8b8b8;
+    
+}
+
+.value-dari,.value-terkumpul {
+    float: right;
+}
+.label-stat,.label-dari {
+    text-align: left;
+}
+
+.card-line {
+    border: none;
+    border-top: 2px solid #ffffff;
+    margin: 10px 0;
+
+}
+
+.deadline {
+    clear: both;
+    font-size: 12px;
+    color: #c93737;
+    margin-top: 10px;
+    text-align: right;
+    font-weight: bold;
+
+}
+
 .target-dana {
     color: rgb(255, 255, 255);
     font-size: 0.8rem;
@@ -208,6 +295,7 @@ input[type="radio"][name="kategori"] {
     font-size: 0.8rem;
     cursor: pointer;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .card-footer {
@@ -216,4 +304,19 @@ input[type="radio"][name="kategori"] {
     font-size: 0.9rem;
     font-style: italic;
     font-weight: 650;
+}
+
+.footer {
+    text-align: center;         
+    padding: 25px 20px;         
+    background-color: #f9f9f9;  
+    color: #666666;             
+    font-family: sans-serif;
+    font-size: 14px;
+    border-top: 1px solid #eaeaea;
+    margin-top: 50px;           
+}
+
+.footer p {
+    margin: 0;
 }
