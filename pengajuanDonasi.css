@@ -5,19 +5,18 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* Menyamakan background dan properti body dengan detailDonasi */
 body {
     background: #f0f2f0;
     color: #1a1a1a;
     min-height: 100vh;
+    padding: 10px 10px 48px;
 }
 
-/* ── HERO BANNER (Sama dengan detailDonasi) ── */
+
 .hero {
     position: relative;
     height: 220px;
     overflow: hidden;
-    width: 100%;
 }
 
 .hero img {
@@ -26,19 +25,23 @@ body {
     object-fit: cover;
     display: block;
     filter: brightness(0.75);
+    border-radius:12px;
 }
 
-.btn-baca-berita {
+.btn-back {
     position: absolute;
-    bottom: 20px;
-    right: 25px;
-    text-align: center;
+    top: 18px;
+    left: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: rgba(255, 255, 255, 0.18);
     border: 2px solid rgba(255, 255, 255, 0.55);
     color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 700;
-    padding: 7px 16px;
+    padding: 7px 16px 7px 10px;
     border-radius: 30px;
     cursor: pointer;
     backdrop-filter: blur(6px);
@@ -46,20 +49,24 @@ body {
     text-decoration: none;
 }
 
-.btn-baca-berita:hover {
+.btn-back:hover {
     background: rgba(255, 255, 255, 0.32);
     transform: translateX(-2px);
 }
 
-/* ── MAIN CONTAINER ── */
+.btn-back svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
 .container {
     max-width: 1160px;
     margin: 0 auto;
     padding: 28px 20px 48px;
 }
 
-/* ── KARTU STATISTIK ── */
-.stats-box {
+.info-card {
     background: #ffffff;
     border-radius: 14px;
     padding: 28px 32px;
@@ -67,23 +74,31 @@ body {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
 }
 
+.info-card h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    font-style: italic;
+    color: #28a745;
+    margin-bottom: 17px;
+}
 .stats-row {
     display: flex;
     padding-bottom: 20px;
     justify-content: space-around;
+    
 }
 
 .stat-item .label {
     font-size: 15px;
     font-weight: 800;
     font-style: italic;
-    color: #1a1a1a;
+    color: #767676;
     margin-bottom: 5px;
 }
 
-.amount { font-size: 1.5rem; font-weight: 800; }
-.amount.primary { color: #28a745; }
-.amount.secondary { color: #1a1a1a; font-style: italic;}
+.amount { font-size: 2rem; font-weight: 800; }
+.amount.primary { color: #af63d0; }
+.amount.secondary { color: #767676; font-style: italic;}
 
 .fundraiser-bar {
     background: #f5f5f5;
@@ -99,7 +114,6 @@ body {
     font-weight: 800;
 }
 
-/* ── TWO COLUMN LAYOUT (Sama dengan detailDonasi) ── */
 .two-col {
     display: grid;
     grid-template-columns:1fr  360px ;
@@ -113,7 +127,6 @@ body {
     }
 }
 
-/* ── KARTU FORM ── */
 .card-style {
     background: #ffffff;
     border-radius: 14px;
@@ -133,7 +146,6 @@ body {
     font-size: 14px;
 }
 
-/* Menyesuaikan warna input agar serasi dengan card putih */
 input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -143,7 +155,45 @@ input[type="text"] {
     color: #333;
 }
 
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: #a7a7a7;
+    margin-bottom: 25px;
+}
+
+input[type="file"]::file-selector-button {
+    width: 100px;
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #218838;
+}
+
 input[type="text"]::placeholder { color: #a7a7a7; }
+input[type="number"]::placeholder { color: #a7a7a7; }
+input[type="file"]::placeholder { color: #a7a7a7; }
+
 
 .input-with-toggle {
     display: flex;
@@ -161,12 +211,16 @@ input[type="text"]::placeholder { color: #a7a7a7; }
     color: #666;
 }
 
-/* ── TOMBOL PAYMENT & SUBMIT ── */
 .payment-options {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
     flex-direction: column;
+}
+
+#qris {
+    width: 120px;
+    height: 120px;
 }
 
 .payment-method{
@@ -178,11 +232,10 @@ input[type="text"]::placeholder { color: #a7a7a7; }
     border-radius: 8px;
     padding: 12px 20px;
     font-size: 15px;
-
-
 }
 
 .btn-submit-donasi {
+    text-decoration: none;
     width: 100%;
     padding: 15px;
     background-color: #28a745;
@@ -192,15 +245,36 @@ input[type="text"]::placeholder { color: #a7a7a7; }
     font-weight: 800;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 120px;
     transition: background 0.3s;
 }
 
+.notif {
+    display: none;
+    background: #959595;
+    color: white;
+    padding: 2px 20px;
+    border-radius: 8px;
+}
+
+.notif a {
+    color: rgb(164, 57, 57);
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    float: right;
+}
+
+.notif:target {
+    display: block; 
+    margin-top: 40px;
+
+}
 .btn-submit-donasi:hover {
     background-color: #218838;
 }
 
-/* ── SWITCH TOGGLE ── */
 .switch {
     position: relative;
     display: inline-block;
@@ -231,3 +305,18 @@ input:checked + .slider { background-color: #28a745; }
 .slider.round { border-radius: 34px; }
 .slider.round:before { border-radius: 50%; }
 input:checked + .slider:before { transform: translateX(20px); }
+
+.footer {
+    text-align: center;         
+    padding: 25px 20px;         
+    background-color: #f9f9f9;  
+    color: #666666;             
+    font-family: sans-serif;
+    font-size: 14px;
+    border-top: 1px solid #eaeaea;
+    margin-top: 50px;           
+}
+
+.footer p {
+    margin: 0;
+}

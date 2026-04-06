@@ -1,6 +1,5 @@
 
 
-/* ── BODY ── */
 body {
   font-family: 'Montserrat', sans-serif;
   background: #f0f2f0;
@@ -8,7 +7,6 @@ body {
   min-height: 100vh;
 }
 
-/* ── HERO ── */
 .hero {
   position: relative;
   height: 220px;
@@ -21,9 +19,9 @@ body {
   object-fit: cover;
   display: block;
   filter: brightness(0.75);
+  border-radius:12px;
 }
 
-/* Tombol Kembali */
 .btn-back {
   position: absolute;
   top: 18px;
@@ -56,7 +54,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Tombol Donasi */
 .btn-donasi {
   position: absolute;
   bottom: 20px;
@@ -82,14 +79,12 @@ body {
 }
 
 
-/* ── MAIN CONTAINER ── */
 .container {
   max-width: 1160px;
   margin: 0 auto;
   padding: 28px 20px 48px;
 }
 
-/* ── INFO CARD ── */
 .info-card {
   background: #ffffff;
   border-radius: 14px;
@@ -112,13 +107,13 @@ body {
 }
 
 .info-card .dibuka span.label {
-  color: #28a745;
+  color: #d74441;
   font-weight: 800;
   font-style: italic;
 }
 
 .info-card .dibuka span.date {
-  color: #1a1a1a;
+  color: #555555;
   font-weight: 600;
 }
 
@@ -136,7 +131,6 @@ body {
   font-weight: 800;
 }
 
-/* ── TWO COLUMN LAYOUT ── */
 .two-col {
   display: grid;
   grid-template-columns: 360px 1fr;
@@ -150,7 +144,6 @@ body {
   }
 }
 
-/* ── STATS CARD (LEFT) ── */
 .stats-card {
   background: #ffffff;
   border-radius: 14px;
@@ -162,51 +155,50 @@ body {
   font-size: 15px;
   font-weight: 800;
   font-style: italic;
-  color: #1a1a1a;
-  margin-bottom: 2px;
+  color: #767676;
+  margin-bottom: 1px;
 }
 
-.stats-card .value-green {
+.stats-card .value-terkumpul {
   font-size: 26px;
   font-weight: 800;
-  color: #28a745;
-  margin-bottom: 16px;
+  color: #af63d0;
+  margin-bottom: 15px;
 }
 
 .stats-card .label-dari {
   font-size: 15px;
   font-weight: 800;
   font-style: italic;
-  color: #1a1a1a;
-  margin-bottom: 2px;
+  color: #767676;
+  margin-bottom: 1px;
 }
 
 .stats-card .value-dari {
   font-size: 22px;
   font-weight: 700;
   font-style: italic;
-  color: #1a1a1a;
+  color: #767676;
   margin-bottom: 20px;
 }
 
-/* ── PROGRESS BAR ── */
-.progress-wrap {
-  background: #e0e0e0;
+.progress {
   border-radius: 8px;
   height: 8px;
   margin-bottom: 24px;
   overflow: hidden;
+  width: 100%;
 }
 
-.progress-fill {
-  height: 100%;
-  background: #28a745;
-  border-radius: 8px;
-  width: 48.7%;
-  transition: width 1s ease;
+.progress::-webkit-progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+.progress::-webkit-progress-value {
+  background-color: #28a745;
+  border-radius: 10px;
 }
 
-/* ── DAFTAR DONATUR ── */
 .donatur-header {
   background: #28a745;
   color: #ffffff;
@@ -244,31 +236,18 @@ body {
   margin-bottom: 4px;
 }
 
-/* ── AVATAR ── */
 .avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #cccccc;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 800;
-  color: #ffffff;
 }
-
-.avatar.green { background: #28a745; }
-.avatar.dark  { background: #333333; }
-.avatar.gold  { background: #f5a623; }
 
 .donatur-name {
   font-weight: 700;
   font-style: italic;
   font-size: 14px;
   flex: 1;
+  color: #555555;
 }
 
 .donatur-amount {
@@ -283,7 +262,6 @@ body {
   padding-left: 46px;
 }
 
-/* ── DETAIL CARD (RIGHT) ── */
 .detail-card {
   background: #ffffff;
   border-radius: 14px;
@@ -305,4 +283,19 @@ body {
   line-height: 1.75;
   color: #555555;
   margin-bottom: 14px;
+}
+
+.footer {
+    text-align: center;         
+    padding: 25px 20px;         
+    background-color: #f9f9f9;  
+    color: #666666;             
+    font-family: sans-serif;
+    font-size: 14px;
+    border-top: 1px solid #eaeaea;
+    margin-top: 50px;           
+}
+
+.footer p {
+    margin: 0;
 }
