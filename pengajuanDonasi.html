@@ -8,13 +8,12 @@
 </head>
 <body>
     
+    <header class="hero">
+        <img src="assets/contoh1.jpg" alt="Anak-anak">
+        <a href="#" class="btn-baca-berita">Baca Berita 📖</a>
+    </header>
+    
     <div class="container">
-        <header class="header-image">
-            <img src="assets/contoh1.jpg" alt="Anak-anak">
-            <a href="#" class="btn-baca-berita">Baca Berita 📖</a>
-            
-        </header>
-        <br>
         <section class="stats-box">
             <div class="stats-row">
                 <div class="stat-item">
@@ -27,42 +26,79 @@
                 </div>
             </div>
             <div class="fundraiser-bar">
-                <p>Penggalang Dana : <strong>adalah..foundation</strong></p>
+                Penyelenggara : <strong>adalah..foundation</strong>
             </div>
         </section>
 
-        <section class="donation-form">
-            <div class="form-group">
-                <label>Nama Donatur</label>
-                <div class="input-with-toggle">
-                    <input type="text" placeholder="Masukkan nama Anda">
-                    <div class="toggle-container">
-                        <span>Anonymus</span>
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
+        <div class="two-col">
+            
+            <div class="col-left">
+                <section class="donation-form card-style">
+                    <div class="form-group">
+                        <label>Nama Donatur</label>
+                        <div class="input-with-toggle">
+                            <input type="text" placeholder="Masukkan nama Anda">
+                            <div class="toggle-container">
+                                <span>Anonymus</span>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label>Email <small>(*wajib)</small></label>
+                        <input type="text" placeholder="Masukkan email Anda">
+                    </div>
+                    <div class="form-group">
+                        <label>Tambahkan Komentar <small>(*opsional)</small></label>
+                        <input type="text" placeholder="Tulis pesan penyemangat...">
+                    </div>
+                    <button class="btn-submit-donasi">Kirim Donasi Sekarang</button>
+                </section>
             </div>
 
-            <div class="form-group">
-                <label>Tambahkan Komentar <small>(*opsional)</small></label>
-                <input type="text" placeholder="Tulis pesan penyemangat...">
-            </div>
+            <div class="col-right">
+                <section class="donation-form card-style">
+                    <div class="form-group">
+                        <label>Opsi Pembayaran</label>
+                        <div class="payment-options">
+                            <div class="payment-method">
+                                <label>QRIS</label>
+                                <div class="pay-option">
+                                    <img src="ini gambar qr" alt="ini gambar qr">
+                                </div>
+                            </div>
 
-            <div class="form-group">
-                <label>Opsi Pembayaran</label>
-                <div class="payment-options">
-                    <button class="pay-btn">QRIS</button>
-                    <button class="pay-btn">Transfer</button>
-                    <button class="pay-btn">E-Wallet</button>
-                    <button class="pay-btn">Virtual Acc</button>
-                </div>
+                            <div class="payment-method">
+                                <label>Rekening(BRI)</label>
+                                <div class="pay-option">
+                                    <p>BRI : 1234567890</p>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <label>Rekening(BCA)</label>
+                                <div class="pay-option">
+                                    <p>BCA : 1234567890</p>
+                                </div>
+                            </div>
+
+                            <div class="payment-method">
+                                <label>E-wallet(DANA)</label>
+                                <div class="pay-option">
+                                    <p>DANA : 0854567890</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </section>
             </div>
             
-            <button class="btn-submit-donasi">Kirim Donasi Sekarang</button>
-        </section>
+        </div>
     </div>
 </body>
 </html>
