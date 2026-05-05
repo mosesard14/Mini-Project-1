@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengajuan Donasi</title>
-    <link rel="stylesheet" href="pengajuanDonasi.css">
+    <link rel="stylesheet" href="/style/pengajuanDonasi.css">
 </head>
 <body>
     

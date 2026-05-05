@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Halaman Donasi</title>
-  <link rel="stylesheet" href="detailDonasi.css"/>
+  <link rel="stylesheet" href="/style/detailDonasi.css"/>
 </head>
 <body>
 
