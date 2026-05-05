@@ -11,7 +11,7 @@
     <div class="hero">
         <img src="assets/contoh1.jpg" alt="gambar berita">
 
-        <a href="detailDonasi.html" class="btn-back">
+        <a href="/pages/detailDonasi.php" class="btn-back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"/>
             </svg>

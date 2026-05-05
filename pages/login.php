@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 </html>
 <!DOCTYPE html>
 <html lang="id">
@@ -16,7 +20,7 @@
         <div class="card-container">
             
             <div class="card-left">
-                <form action="main.html">
+                <form action="/pages/main.php" method="post">
                 <h1 class="title">Masuk</h1>
                     <div class="input-group">
                         <label for="username">username</label>

@@ -19,7 +19,7 @@
     Kembali
   </a>
 
-  <a href="PengajuanDonasi.html" class="btn-donasi">Donasi</a>
+  <a href="/pages/pengajuanDonasi.php" class="btn-donasi">Donasi</a>
 </div>
 
 <div class="container">
