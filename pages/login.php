@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Login</title>
-    <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="../style/login.css">
 </head>
 <body>
 
@@ -20,7 +20,7 @@
         <div class="card-container">
             
             <div class="card-left">
-                <form action="/pages/main.php" method="post">
+                <form action="../pages/main.php" method="post">
                 <h1 class="title">Masuk</h1>
                     <div class="input-group">
                         <label for="username">username</label>

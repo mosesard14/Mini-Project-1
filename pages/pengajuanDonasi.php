@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengajuan Donasi</title>
-    <link rel="stylesheet" href="/style/pengajuanDonasi.css">
+    <link rel="stylesheet" href="../style/pengajuanDonasi.css">
 </head>
 <body>
     
     <div class="hero">
-        <img src="assets/contoh1.jpg" alt="gambar berita">
+        <img src="../assets/contoh1.jpg" alt="gambar berita">
 
-        <a href="/pages/detailDonasi.php" class="btn-back">
+        <a href="../pages/detailDonasi.php" class="btn-back">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"/>
             </svg>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda Donasi</title>
-    <link rel="stylesheet" href="/style/main.css">
+    <link rel="stylesheet" href="../style/main.css">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
 
                 <div class="card-grid">
                     <div class="card item-bencana">
-                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh1.jpg');">
                             <span class="tag">#Bencana</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="card item-bencana">
-                        <div class="card-img" style="background-image: url('assets/contoh2.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh2.jpg');">
                             <span class="tag">#Bencana</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="card item-pendidikan">
-                        <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh3.jpg');">
                             <span class="tag">#Pendidikan</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="card item-kesehatan">
-                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh1.jpg');">
                             <span class="tag">#KesehatanLingkungan</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="card item-kesehatan">
-                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh1.jpg');">
                             <span class="tag">#KesehatanLingkungan</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="card item-pendidikan">
-                        <div class="card-img" style="background-image: url('assets/contoh3.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh3.jpg');">
                             <span class="tag">#Pendidikan</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
@@ -174,7 +174,7 @@
                         </div>
                     </div>
                     <div class="card item-fasilitas">
-                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh1.jpg');">
                             <span class="tag">#FasilitasUmum</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                     <div class="card item-fasilitas">
-                        <div class="card-img" style="background-image: url('assets/contoh1.jpg');">
+                        <div class="card-img" style="background-image: url('../assets/contoh1.jpg');">
                             <span class="tag">#FasilitasUmum</span>
                             <span class="lokasi">Aceh, Sumatera Utara</span>
                             <a href="detailDonasi.html" class="btn-card-donasi">Detail</a>                   
