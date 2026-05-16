@@ -98,17 +98,18 @@ if ($role === 'donatur') {
 
         .profile-card { background:white; border-radius:var(--radius-xl); box-shadow:var(--shadow-md); overflow:hidden; animation:fadeInUp .45s ease; }
         .profile-banner { height:110px; background:linear-gradient(135deg,var(--green-dark) 0%,var(--green-darker) 100%); position:relative; }
-
-        .avatar-area { position:absolute; bottom:-46px; left:50%; transform:translateX(-50%); }
-        .avatar-circle { width:92px; height:92px; border-radius:50%; border:4px solid white; object-fit:cover; cursor:pointer; transition:var(--transition); display:block; }
+        .profile-header{ display: flex; flex-direction: column; align-items: center; margin-top: -55px; margin-bottom: px; position: relative; z-index: 2;}
+        .avatar-area { margin-bottom: 12px; }
+        .avatar-wrapper{ position:relative; display:inline-block }
+        .avatar-circle{width: 110px; height: 118px; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 4px 14px rgba(0,0,0,0.15); cursor: pointer;}       
         .avatar-circle:hover { opacity:.88; }
-        .avatar-edit { position:absolute; bottom:4px; right:4px; width:26px; height:26px; background:var(--green-primary); border:2px solid white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; cursor:pointer; }
+        .avatar-edit { position: absolute; bottom:4px; right:4px; width:28px; height:28px; background:var(--green-primary); border:2px solid white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; cursor:pointer; }
         #inputAvatar { display:none; }
 
-        .profile-body { padding:60px 36px 36px; }
+        .profile-body { padding:2px 36px 36px; }
         .profile-name { font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#1a2319; text-align:center; }
-        .profile-role-badge { display:inline-block; background:var(--green-light); color:var(--green-primary); font-size:11px; font-weight:700; padding:3px 12px; border-radius:20px; text-transform:uppercase; letter-spacing:.5px; margin:5px auto 0; }
-        .profile-name-row { text-align:center; margin-bottom:10px; }
+        .profile-role-badge { background:var(--green-light); color:var(--green-primary); font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:.5px; margin-top: 6px; width: fit-content;}
+        .profile-name-row { display: flex; flex-direction: column; align-items: center; justify-content: center;}
 
         /* Ringkasan donasi */
         .ringkasan-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:24px; }
@@ -149,15 +150,17 @@ if ($role === 'donatur') {
 <div class="pg">
 <div class="profile-card">
     <div class="profile-banner"></div>
-    <div class="avatar-area">
-        <div style="position:relative;display:inline-block;">
-            <img src="../<?= htmlspecialchars($user['foto_profil']) ?>"
-                 id="avatarPreview" class="avatar-circle"
-                 alt="Avatar" onerror="this.src='../assets/avatar1.jpeg'"
-                 onclick="document.getElementById('inputAvatar').click()">
-            <div class="avatar-edit" onclick="document.getElementById('inputAvatar').click()">✏️</div>
-        </div>
+    <div class="profile-header">
+        <div class="avatar-wrapper">
+            <div style="position:relative;display:inline-block;">
+                <img src="../<?= htmlspecialchars($user['foto_profil']) ?>"
+                    id="avatarPreview" class="avatar-circle"
+                    alt="Avatar" onerror="this.src='../assets/avatar1.jpeg'"
+                    onclick="document.getElementById('inputAvatar').click()">
+                <div class="avatar-edit" onclick="document.getElementById('inputAvatar').click()">✏️</div>
+            </div>
         <input type="file" id="inputAvatar" accept="image/*" onchange="previewAvatar(this)">
+        </div>
     </div>
 
     <div class="profile-body">
