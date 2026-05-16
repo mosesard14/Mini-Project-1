@@ -124,8 +124,8 @@ if ($role === 'donatur') {
         .rs-val { font-size:14px; font-weight:800; color:#1a2319; }
         .rs-cnt { font-size:11px; color:var(--gray-muted); }
 
-        .form-divider { border:none; border-top:1.5px solid var(--gray-border); margin:22px 0; }
-        .form-sec { font-family:'Montserrat',sans-serif; font-size:13px; font-weight:800; color:var(--green-primary); margin-bottom:16px; }
+        .form-divider { border:none; border-top:1.5px solid var(--gray-border); margin-top: 5px; margin-bottom: 10px;}
+        .form-sec { font-family:'Montserrat',sans-serif; font-size:13px; font-weight:800; color:var(--green-primary); margin-bottom:16px; margin-top: 10px; }
 
         .fg { margin-bottom:16px; }
         .fg label { display:block; font-size:11px; font-weight:700; color:var(--gray-muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
