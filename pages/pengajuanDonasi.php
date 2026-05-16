@@ -91,7 +91,7 @@ $pageTitle = 'Form Donasi';
         .sc-title { font-family:'Montserrat',sans-serif; font-size:14px; font-weight:800; color:var(--green-primary); margin-bottom:16px; padding-bottom:10px; border-bottom:1.5px solid var(--gray-border); }
 
         .fg { margin-bottom:18px; }
-        .fg label { display:block; font-size:11px; font-weight:700; color:var(--green-primary); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; }
+        .fg label { display:block; font-size:11px; font-weight:700; color:var(--green-primary); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; margin-right: 10px;}
         .fg input, .fg select, .fg textarea {
             width:100%; padding:11px 14px; border:1.5px solid var(--gray-border);
             border-radius:var(--radius-sm); font-family:'Poppins',sans-serif; font-size:14px;
@@ -183,7 +183,7 @@ $pageTitle = 'Form Donasi';
         <!-- FORM DONASI -->
         <div>
             <div class="sc">
-                <div class="sc-title">📝 Isi Data Donasi</div>
+                <div class="sc-title">Isi Data Donasi</div>
 
                 <?php if ($errors): ?>
                 <ul class="err-list">
