@@ -238,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label class="bd-lbl">Tambah Tag / Kategori</label>
                     <select name="tag" class="bd-select">
                         <option value="">Pilih kategori</option>
-                        <?php foreach(['Bencana'=>'🌊 Bencana Alam','Pendidikan'=>'📚 Pendidikan','Kesehatan'=>'🏥 Kesehatan','FasilitasUmum'=>'🏗️ Fasilitas Umum'] as $v=>$lbl): ?>
+                        <?php foreach(['Bencana'=>'Bencana Alam','Pendidikan'=>'Pendidikan','Kesehatan'=>'Kesehatan','FasilitasUmum'=>'Fasilitas Umum'] as $v=>$lbl): ?>
                         <option value="<?= $v ?>" <?= ($_POST['tag']??'')===$v?'selected':'' ?>><?= $lbl ?></option>
                         <?php endforeach; ?>
                     </select>

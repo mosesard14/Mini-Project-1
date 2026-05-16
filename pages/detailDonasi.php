@@ -95,15 +95,15 @@ $backUrl = 'main.php'; $pageTitle = 'Detail Kampanye';
             <h1><?= htmlspecialchars($row['judul']) ?></h1>
             <div class="hero-badges">
                 <div class="hbadge">#<?= htmlspecialchars($row['kategori']) ?></div>
-                <div class="hbadge">📍 <?= htmlspecialchars($row['lokasi']) ?></div>
-                <div class="hbadge">⏰ <?= date('d M Y', strtotime($row['deadline'])) ?></div>
+                <div class="hbadge">Lokasi : <?= htmlspecialchars($row['lokasi']) ?></div>
+                <div class="hbadge">Akhir Donasi : <?= date('d M Y', strtotime($row['deadline'])) ?></div>
             </div>
         </div>
         <div class="hero-donate-btn">
             <?php if ($user_id && $role === 'donatur'): ?>
                 <a href="pengajuanDonasi.php?id=<?= $id ?>" class="btn btn-ghost">💚 Donasi Sekarang</a>
             <?php elseif (!$user_id): ?>
-                <a href="login.php" class="btn btn-ghost">🔒 Login untuk Donasi</a>
+                <a href="login.php" class="btn btn-ghost">Login untuk Donasi</a>
             <?php endif; ?>
         </div>
     </div>
@@ -119,7 +119,7 @@ $backUrl = 'main.php'; $pageTitle = 'Detail Kampanye';
         <div>
             <!-- PROGRESS -->
             <div class="sc">
-                <div class="sc-title">💰 Dana Terkumpul</div>
+                <div class="sc-title">Dana Terkumpul</div>
                 <div class="prog-amt"><?= rupiah((int)$row['terkumpul']) ?></div>
                 <div class="prog-target">dari <?= rupiah((int)$row['target_dana']) ?></div>
                 <div class="progress-bar-wrap">
@@ -130,7 +130,7 @@ $backUrl = 'main.php'; $pageTitle = 'Detail Kampanye';
 
             <!-- METODE PEMBAYARAN -->
             <div class="sc">
-                <div class="sc-title">💳 Metode Donasi</div>
+                <div class="sc-title">Metode Donasi</div>
                 <div class="pay-list">
                     <?php if (in_array('QRIS', $metode) && $row['qris_path']): ?>
                     <div class="pay-item">
@@ -163,7 +163,7 @@ $backUrl = 'main.php'; $pageTitle = 'Detail Kampanye';
             <!-- DONATUR -->
             <?php if ($donasi_list): ?>
             <div class="sc">
-                <div class="sc-title">👥 Donatur Terbaru</div>
+                <div class="sc-title">Donatur Terbaru</div>
                 <?php foreach ($donasi_list as $d): ?>
                 <div class="don-item">
                     <img src="../<?= htmlspecialchars($d['foto_profil']) ?>" class="don-av"
@@ -185,7 +185,7 @@ $backUrl = 'main.php'; $pageTitle = 'Detail Kampanye';
         <div class="sc">
             <img src="../<?= htmlspecialchars($row['foto_path']) ?>" class="cerita-img"
                  alt="foto" onerror="this.src='../assets/contoh1.jpg'">
-            <div class="sc-title">📖 Deskripsi Kampanye</div>
+            <div class="sc-title">Deskripsi Kampanye</div>
             <div class="cerita-text"><?= nl2br(htmlspecialchars($row['cerita'])) ?></div>
         </div>
 

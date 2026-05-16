@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label>Password</label>
                     <input type="password" name="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn-masuk">Masuk →</button>
+                <button type="submit" class="btn-masuk">Masuk</button>
             </form>
             <div class="hint-box">
                 <b>Akun demo:</b><br>
