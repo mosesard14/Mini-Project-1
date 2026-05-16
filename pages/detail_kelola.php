@@ -239,8 +239,8 @@ $all_metode = ['Bencana','Pendidikan','Kesehatan','FasilitasUmum'];
             <h2><?= htmlspecialchars($kamp['judul']) ?></h2>
             <div class="hbadges">
                 <div class="hb">#<?= htmlspecialchars($kamp['kategori']) ?></div>
-                <div class="hb">📍 <?= htmlspecialchars($kamp['lokasi']) ?></div>
-                <div class="hb">⏰ <?= date('d M Y', strtotime($kamp['deadline'])) ?></div>
+                <div class="hb">Lokasi : <?= htmlspecialchars($kamp['lokasi']) ?></div>
+                <div class="hb">Deadline : <?= date('d M Y', strtotime($kamp['deadline'])) ?></div>
             </div>
         </div>
     </div>
@@ -251,7 +251,7 @@ $all_metode = ['Bencana','Pendidikan','Kesehatan','FasilitasUmum'];
         <div>
             <!-- RINGKASAN DANA -->
             <div class="sc">
-                <div class="sc-title">💰 Ringkasan Dana</div>
+                <div class="sc-title">Ringkasan Dana</div>
                 <div class="prog-amt"><?= rupiah((int)$kamp['terkumpul']) ?></div>
                 <div class="prog-target">dari <?= rupiah((int)$kamp['target_dana']) ?></div>
                 <div class="progress-bar-wrap">
@@ -276,7 +276,7 @@ $all_metode = ['Bencana','Pendidikan','Kesehatan','FasilitasUmum'];
 
             <!-- DAFTAR DONATUR -->
             <div class="sc">
-                <div class="sc-title">👥 Daftar Donatur
+                <div class="sc-title">Daftar Donatur
                     <span style="font-size:11px;color:var(--gray-muted);font-weight:500;">(<?= count($donasi_list) ?> donasi)</span>
                 </div>
                 <?php if (empty($donasi_list)): ?>
@@ -325,7 +325,7 @@ $all_metode = ['Bencana','Pendidikan','Kesehatan','FasilitasUmum'];
         <div>
             <!-- EDIT KAMPANYE -->
             <div class="sc">
-                <div class="sc-title">✏️ Edit Kampanye</div>
+                <div class="sc-title">Edit Kampanye</div>
 
                 <?php if ($errors): ?>
                 <ul class="err-list">
@@ -385,7 +385,7 @@ $all_metode = ['Bencana','Pendidikan','Kesehatan','FasilitasUmum'];
                 <a href="detail_kelola.php?id=<?= $kamp_id ?>&action=delete"
                    class="btn btn-danger" style="width:100%;display:block;text-align:center;border-radius:var(--radius-sm);"
                    onclick="return confirm('Yakin hapus kampanye ini? Tindakan tidak dapat dibatalkan.')">
-                   🗑️ Hapus Kampanye
+                   Hapus Kampanye
                 </a>
             </div>
         </div>

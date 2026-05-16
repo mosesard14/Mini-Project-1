@@ -41,7 +41,7 @@ if ($role === 'pengelola' && $user_id) {
     while ($r = mysqli_fetch_assoc($res2)) $my_camps[] = $r;
 }
 
-$kat_list = ['Bencana'=>'🌊 Bencana Alam','Pendidikan'=>'📚 Pendidikan','Kesehatan'=>'🏥 Kesehatan','FasilitasUmum'=>'🏗️ Fasilitas Umum'];
+$kat_list = ['Bencana'=>'Bencana Alam','Pendidikan'=>'Pendidikan','Kesehatan'=>'Kesehatan','FasilitasUmum'=>'Fasilitas Umum'];
 ?>
 <!DOCTYPE html>
 <html lang="id">
