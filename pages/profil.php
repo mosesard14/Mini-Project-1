@@ -108,7 +108,7 @@ if ($role === 'donatur') {
 
         .profile-body { padding:2px 36px 36px; }
         .profile-name { font-family:'Montserrat',sans-serif; font-size:20px; font-weight:800; color:#1a2319; text-align:center; }
-        .profile-role-badge { background:var(--green-light); color:var(--green-primary); font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:.5px; margin-top: 6px; width: fit-content;}
+        .profile-role-badge { background:var(--green-light); color:var(--green-primary); font-size:11px; font-weight:700; padding:4px 14px; border-radius:20px; text-transform:uppercase; letter-spacing:.5px; margin-top: 6px; width: fit-content; margin-bottom: 10px;}
         .profile-name-row { display: flex; flex-direction: column; align-items: center; justify-content: center;}
 
         /* Ringkasan donasi */
