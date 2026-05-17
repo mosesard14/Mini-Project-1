@@ -120,8 +120,8 @@ $pageTitle = 'Form Donasi';
         .metode-opts { display:flex; flex-direction:column; gap:8px; }
         .metode-opt { display:flex; align-items:center; gap:10px; background:#f9faf9; border:1.5px solid var(--gray-border); border-radius:var(--radius-sm); padding:10px 14px; cursor:pointer; transition:var(--transition); }
         .metode-opt:hover { border-color:var(--green-primary); }
-        .metode-opt input[type="radio"] { accent-color:var(--green-primary); }
-        .metode-opt label { cursor:pointer; font-size:13px; font-weight:600; color:#333; }
+        .metode-opt input[type="radio"] { accent-color:var(--green-primary); flex-shrink: 0;  }
+        .metode-opt label { white-space: nowrap; cursor:pointer; font-size:13px; font-weight:600; color:#333; margin: 0; }
         .metode-opt.selected { border-color:var(--green-primary); background:var(--green-light); }
 
         /* error */
@@ -268,7 +268,7 @@ $pageTitle = 'Form Donasi';
         <!-- INFO METODE PEMBAYARAN -->
         <div>
             <div class="sc">
-                <div class="sc-title">💳 Info Pembayaran</div>
+                <div class="sc-title">Info Pembayaran</div>
                 <?php if (in_array('QRIS', $metode_kampanye) && $kamp['qris_path']): ?>
                 <div style="margin-bottom:14px;">
                     <div style="font-size:11px;font-weight:800;text-transform:uppercase;color:var(--green-primary);margin-bottom:6px;">QRIS</div>
