@@ -91,13 +91,14 @@ $pageTitle = 'Form Donasi';
         .sc-title { font-family:'Montserrat',sans-serif; font-size:14px; font-weight:800; color:var(--green-primary); margin-bottom:16px; padding-bottom:10px; border-bottom:1.5px solid var(--gray-border); }
 
         .fg { margin-bottom:18px; }
-        .fg label { display:block; font-size:11px; font-weight:700; color:var(--green-primary); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; margin-right: 10px;}
+        .fg > label { display:block; font-size:11px; font-weight:700; color:var(--green-primary); text-transform:uppercase; letter-spacing:.4px; margin-bottom:6px; margin-right: 10px;}
         .fg input, .fg select, .fg textarea {
             width:100%; padding:11px 14px; border:1.5px solid var(--gray-border);
             border-radius:var(--radius-sm); font-family:'Poppins',sans-serif; font-size:14px;
             background:#f9faf9; color:#333; outline:none; transition:var(--transition);
         }
         .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--green-primary); background:white; box-shadow:0 0 0 3px rgba(45,138,82,.10); }
+        .fg input[type="radio"] { width:auto; padding:0; background:none; border:none; }
         .fg textarea { resize:vertical; min-height:80px; }
 
         /* anon toggle */
@@ -118,7 +119,9 @@ $pageTitle = 'Form Donasi';
 
         /* metode options */
         .metode-opts { display:flex; flex-direction:column; gap:8px; }
-        .metode-opt { display:flex; align-items:center; gap:10px; background:#f9faf9; border:1.5px solid var(--gray-border); border-radius:var(--radius-sm); padding:10px 14px; cursor:pointer; transition:var(--transition); }
+        .metode-opt { display:flex; align-items:center; gap:10px; background:#f9faf9; border:1.5px solid var(--gray-border); border-radius:var(--radius-sm); padding:10px 14px; cursor:pointer; transition:var(--transition); width: 100%; box-sizing: border-box; overflow: hidden;}
+        .metode-opt span {font-size: 13px; font-weight: 600; color: #333; cursor: pointer; text-transform: uppercase;
+}
         .metode-opt:hover { border-color:var(--green-primary); }
         .metode-opt input[type="radio"] { accent-color:var(--green-primary); flex-shrink: 0;  }
         .metode-opt label { white-space: nowrap; cursor:pointer; font-size:13px; font-weight:600; color:#333; margin: 0; }
@@ -235,7 +238,7 @@ $pageTitle = 'Form Donasi';
                                  onclick="selectMetode(this,'<?= $m ?>')">
                                 <input type="radio" name="metode" value="<?= $m ?>"
                                        id="m_<?= $m ?>" <?= ($_POST['metode']??'')===$m?'checked':'' ?>>
-                                <label for="m_<?= $m ?>"><?= $m ?></label>
+                                <span  style="flex:1; font-size:13px; font-weight:600; color:#333; text-transform:uppercase; overflow:hidden; min-width:0;" for="m_<?= $m ?>"><?= $m ?></span>
                             </div>
                             <?php endforeach; ?>
                         </div>
