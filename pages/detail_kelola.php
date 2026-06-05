@@ -664,15 +664,15 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                     <div class="prog-pct"><?= $p ?>% tercapai</div>
                     <div class="sum-grid">
                         <div class="sum-box green">
-                            <div class="sum-lbl">✅ Verified</div>
+                            <div class="sum-lbl">Verified</div>
                             <div class="sum-val"><?= rupiah($verified_tot) ?></div>
                         </div>
                         <div class="sum-box yellow">
-                            <div class="sum-lbl">⏳ Pending</div>
+                            <div class="sum-lbl">Pending</div>
                             <div class="sum-val"><?= rupiah($pending_tot) ?></div>
                         </div>
                         <div class="sum-box red">
-                            <div class="sum-lbl">❌ Ditolak</div>
+                            <div class="sum-lbl">Ditolak</div>
                             <div class="sum-val"><?= rupiah($rejected_tot) ?></div>
                         </div>
                     </div>
@@ -698,7 +698,7 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                                     <?php endif; ?>
                                     <div style="margin-top:4px;">
                                         <span class="sdot <?= $d['status'] ?>">
-                                            <?= $d['status'] === 'verified' ? '✅ Verified' : ($d['status'] === 'pending' ? '⏳ Pending' : '❌ Ditolak') ?>
+                                            <?= $d['status'] === 'verified' ? 'Verified' : ($d['status'] === 'pending' ? 'Pending' : 'Ditolak') ?>
                                         </span>
                                         <span style="font-size:10px;color:var(--gray-muted);margin-left:6px;"><?= $d['metode'] ?></span>
                                     </div>
@@ -713,9 +713,9 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                                         <?php endif; ?>
                                         <?php if ($d['status'] === 'pending'): ?>
                                             <a href="detail_kelola.php?id=<?= $kamp_id ?>&verify=accept&did=<?= $d['id'] ?>"
-                                                class="btn-acc" onclick="return confirm('Terima donasi ini?')">✓ Terima</a>
+                                                class="btn-acc" onclick="return confirm('Terima donasi ini?')">Terima</a>
                                             <a href="detail_kelola.php?id=<?= $kamp_id ?>&verify=reject&did=<?= $d['id'] ?>"
-                                                class="btn-rej" onclick="return confirm('Tolak donasi ini?')">✗ Tolak</a>
+                                                class="btn-rej" onclick="return confirm('Tolak donasi ini?')">Tolak</a>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -784,7 +784,7 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
 
                 <!-- DANGER ZONE -->
                 <div class="danger-zone">
-                    <h4>⚠️ Hapus Kampanye</h4>
+                    <h4>Hapus Kampanye</h4>
                     <p>Kampanye yang sudah memiliki dana terkumpul ≥ Rp 10.000 tidak dapat dihapus.</p>
                     <a href="detail_kelola.php?id=<?= $kamp_id ?>&action=delete"
                         class="btn btn-danger" style="width:100%;display:block;text-align:center;border-radius:var(--radius-sm);"
