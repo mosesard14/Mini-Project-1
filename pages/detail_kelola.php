@@ -709,7 +709,7 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                                     <div class="don-actions">
                                         <?php if ($d['bukti_path']): ?>
                                             <button class="btn-bukti-sm"
-                                                onclick="showBukti('<?= htmlspecialchars('../' . $d['bukti_path']) ?>')">Bukti</button>
+                                                onclick="showBukti('<?= htmlspecialchars($d['bukti_path']) ?>')">Bukti</button>
                                         <?php endif; ?>
                                         <?php if ($d['status'] === 'pending'): ?>
                                             <a href="detail_kelola.php?id=<?= $kamp_id ?>&verify=accept&did=<?= $d['id'] ?>"
@@ -799,13 +799,23 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
 
     <!-- MODAL: Lihat bukti transfer -->
     <div class="modal-ov" id="modalBukti">
-        <div class="modal-box">
-            <h3>📎 Bukti Transfer</h3>
-            <img src="" id="buktiImg" alt="bukti">
-            <button class="btn btn-outline btn-sm" style="width:100%;margin-top:14px;"
-                onclick="document.getElementById('modalBukti').classList.remove('show')">Tutup</button>
+    <div class="modal-box">
+        <h3>📎 Bukti Transfer</h3>
+        <img src="" id="buktiImg" alt="bukti"
+            onerror="this.style.display='none'; 
+                     document.getElementById('buktiErr').style.display='block';">
+        <div id="buktiErr" style="display:none; padding:20px; text-align:center; 
+             color:#dc2626; border:2px dashed #dc2626; border-radius:8px;">
+            File tidak ditemukan<br>
+            <small id="buktiErrPath" style="color:#999;"></small>
         </div>
+        <button class="btn btn-outline btn-sm" 
+                style="width:100%;margin-top:14px;"
+                onclick="document.getElementById('modalBukti').classList.remove('show')">
+            Tutup
+        </button>
     </div>
+</div>
 
     <footer class="footer">
         <p>&copy; 2026 <strong>DonasiKu</strong> — moses hervian listyan.</p>
@@ -818,7 +828,8 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
 
         // Show bukti modal
         function showBukti(src) {
-            document.getElementById('buktiImg').src = src;
+            const basePath = window.location.origin + '/Mini-Project-1/';
+            document.getElementById('buktiImg').src = basePath + src;
             document.getElementById('modalBukti').classList.add('show');
         }
         document.getElementById('modalBukti').addEventListener('click', function(e) {
