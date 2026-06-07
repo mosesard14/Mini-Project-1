@@ -33,7 +33,7 @@ function uploadGambar(array $file, string $subdir): string|false
     if ($file['size'] > 5 * 1024 * 1024)    return false;
     $ext  = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $name = uniqid('img_', true) . '.' . $ext;
-    $dir  = __DIR__ . "/../uploads/{$subdir}/";
+    $dir  = __DIR__ . "/uploads/{$subdir}/";
     if (!is_dir($dir)) mkdir($dir, 0755, true);
     if (!move_uploaded_file($file['tmp_name'], $dir . $name)) return false;
     return "uploads/{$subdir}/{$name}";
