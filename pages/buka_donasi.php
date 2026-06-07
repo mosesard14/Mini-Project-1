@@ -96,356 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buka Donasi — DonasiKu</title>
     <link rel="stylesheet" href="../style/global.css">
-    <style>
-        body {
-            background: #f9f9f9;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header foto */
-        .foto-header {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-darker) 100%);
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .foto-header img#previewImg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-            filter: brightness(.78);
-        }
-
-        .foto-header img#previewImg.vis {
-            display: block;
-        }
-
-        .foto-placeholder {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, .42);
-            font-size: 13px;
-            gap: 8px;
-            pointer-events: none;
-        }
-
-        .btn-foto {
-            position: absolute;
-            top: 16px;
-            right: 18px;
-            background: rgba(255, 255, 255, .18);
-            backdrop-filter: blur(8px);
-            border: 2px solid rgba(255, 255, 255, .55);
-            color: white;
-            padding: 9px 22px;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: 700;
-            font-style: italic;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Montserrat', sans-serif;
-            z-index: 2;
-        }
-
-        .btn-foto:hover {
-            background: rgba(255, 255, 255, .30);
-        }
-
-        #inputFoto {
-            display: none;
-        }
-
-        /* Content */
-        .pg {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 24px 20px 60px;
-            flex: 1;
-        }
-
-        /* Cards */
-        .bd-card {
-            background: #e8e8e8;
-            border-radius: 16px;
-            padding: 20px 22px;
-            margin-bottom: 18px;
-        }
-
-        /* Labels */
-        .bd-lbl {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--green-primary);
-            margin-bottom: 8px;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: .3px;
-        }
-
-        /* Inputs */
-        .bd-input,
-        .bd-select,
-        .bd-textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border: none;
-            border-radius: 10px;
-            background: #c2c0c0;
-            font-size: 14px;
-            color: #444;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .bd-input:focus,
-        .bd-select:focus,
-        .bd-textarea:focus {
-            background: white;
-            box-shadow: 0 0 0 2px var(--green-primary);
-        }
-
-        .bd-input::placeholder,
-        .bd-textarea::placeholder {
-            color: #888;
-            font-weight: 400;
-        }
-
-        .bd-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .penggalang-bar {
-            background: var(--green-primary);
-            border-radius: 10px;
-            padding: 11px 16px;
-            margin-top: 12px;
-            color: white;
-            font-size: 14px;
-        }
-
-        .penggalang-bar strong {
-            font-weight: 800;
-        }
-
-        .bd-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-
-        .bd-grid .full {
-            grid-column: 1/-1;
-        }
-
-        @media(max-width:580px) {
-            .bd-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .bd-grid .full {
-                grid-column: auto;
-            }
-        }
-
-        /* Deadline */
-        .dl-row {
-            display: flex;
-            gap: 8px;
-        }
-
-        .dl-row input {
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-            background: #c2c0c0;
-            font-size: 13px;
-            font-weight: 700;
-            color: #444;
-            font-family: 'Poppins', sans-serif;
-            outline: none;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .dl-row input:focus {
-            background: white;
-            box-shadow: 0 0 0 2px var(--green-primary);
-        }
-
-        .dl-row input[name="dd"] {
-            width: 52px;
-        }
-
-        .dl-row input[name="mm"] {
-            width: 52px;
-        }
-
-        .dl-row input[name="yyyy"] {
-            width: 68px;
-        }
-
-        .dl-sep {
-            color: #888;
-            font-weight: 700;
-            font-size: 16px;
-            align-self: center;
-        }
-
-        /* Metode checkboxes */
-        .metode-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .metode-cb {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            background: #c2c0c0;
-            border: 2px solid transparent;
-            border-radius: 10px;
-            padding: 8px 14px;
-            cursor: pointer;
-            transition: var(--transition);
-            user-select: none;
-        }
-
-        .metode-cb:hover {
-            background: #b0aeae;
-        }
-
-        .metode-cb input {
-            display: none;
-        }
-
-        .metode-cb span {
-            font-size: 13px;
-            font-weight: 700;
-            color: #444;
-        }
-
-        .metode-cb.checked {
-            background: var(--green-primary);
-            border-color: var(--green-dark);
-        }
-
-        .metode-cb.checked span {
-            color: white;
-        }
-
-        /* Detail metode (conditional) */
-        .metode-detail {
-            display: none;
-            margin-top: 14px;
-            border-top: 1.5px dashed rgba(0, 0, 0, .12);
-            padding-top: 14px;
-        }
-
-        .metode-detail.show {
-            display: block;
-        }
-
-        .md-lbl {
-            font-size: 11px;
-            font-weight: 800;
-            color: var(--green-primary);
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            display: block;
-            letter-spacing: .4px;
-        }
-
-        /* File drop kecil */
-        .file-drop-sm {
-            border: 2px dashed rgba(0, 0, 0, .20);
-            border-radius: 10px;
-            padding: 14px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            color: #777;
-            font-size: 12px;
-        }
-
-        .file-drop-sm:hover {
-            border-color: var(--green-primary);
-            color: var(--green-primary);
-        }
-
-        .file-drop-sm input {
-            display: none;
-        }
-
-        #qrisPreview {
-            display: none;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-top: 8px;
-        }
-
-        #qrisPreview.vis {
-            display: block;
-        }
-
-        /* Error list */
-        .err-list {
-            background: #fee2e2;
-            border-left: 4px solid #dc2626;
-            border-radius: var(--radius-sm);
-            padding: 12px 16px;
-            margin-bottom: 16px;
-        }
-
-        .err-list li {
-            font-size: 13px;
-            color: #dc2626;
-            font-weight: 600;
-            list-style: none;
-            margin-bottom: 3px;
-        }
-
-        /* Submit */
-        .btn-submit {
-            width: 100%;
-            padding: 14px;
-            background: var(--green-primary);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: var(--transition);
-            box-shadow: 0 4px 14px rgba(45, 138, 82, .30);
-        }
-
-        .btn-submit:hover {
-            background: var(--green-dark);
-            transform: translateY(-1px);
-        }
-    </style>
+    <link rel="stylesheet" href="../style/buka_donasi.css">
 </head>
 
 <body>
@@ -553,10 +204,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="metode-grid">
                         <?php
                         $sel_metode = $_POST['metode'] ?? [];
-                        foreach (['QRIS', 'Rekening', 'E-Wallet', 'BTC', 'Credit Card'] as $m):
+                        foreach (['QRIS', 'Rekening', 'E-Wallet', 'BTC'] as $m):
                             $chk = in_array($m, $sel_metode) ? 'checked' : '';
                         ?>
-                            <label class="metode-cb <?= $chk ? 'checked' : '' ?>" onclick="toggleMetode(this)">
+                            <label class="metode-cb <?= $chk ? 'checked' : '' ?>" data-metode="<?= $m ?>">
                                 <input type="checkbox" name="metode[]" value="<?= $m ?>" <?= $chk ?>>
                                 <span><?= $m ?></span>
                             </label>
@@ -614,6 +265,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p>&copy; 2026 <strong>DonasiKu</strong> — moses hervian listyan.</p>
     </footer>
     <script>
+        // Initialize metode listeners
+        document.querySelectorAll('.metode-cb input[type="checkbox"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                const label = this.parentElement;
+                const metode = label.dataset.metode;
+                const detail = document.getElementById('detail-' + metode);
+
+                if (this.checked) {
+                    label.classList.add('checked');
+                    if (detail) detail.classList.add('show');
+                } else {
+                    label.classList.remove('checked');
+                    if (detail) detail.classList.remove('show');
+                }
+            });
+        });
+
         // Preview foto kampanye
         function previewFoto(input) {
             if (!input.files || !input.files[0]) return;
@@ -644,24 +312,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             r.readAsDataURL(input.files[0]);
         }
 
-        // Toggle metode chip + show/hide detail
-        function toggleMetode(lbl) {
-            lbl.classList.toggle('checked');
-            const cb = lbl.querySelector('input[type="checkbox"]');
-            cb.checked = lbl.classList.contains('checked');
-            const val = cb.value;
-            const detail = document.getElementById('detail-' + val);
-            if (detail) detail.classList.toggle('show', cb.checked);
-        }
-
         // Auto-jump deadline DD→MM→YYYY
         ['dd', 'mm'].forEach(function(id) {
-            document.querySelector('input[name="' + id + '"]').addEventListener('input', function() {
-                if (this.value.length === 2) {
-                    const next = id === 'dd' ? 'mm' : 'yyyy';
-                    document.querySelector('input[name="' + next + '"]').focus();
-                }
-            });
+            const elem = document.querySelector('input[name="' + id + '"]');
+            if (elem) {
+                elem.addEventListener('input', function() {
+                    if (this.value.length === 2) {
+                        const next = id === 'dd' ? 'mm' : 'yyyy';
+                        const nextElem = document.querySelector('input[name="' + next + '"]');
+                        if (nextElem) nextElem.focus();
+                    }
+                });
+            }
         });
 
         // Build hidden deadline value before submit

@@ -89,11 +89,11 @@ INSERT INTO kampanye (pengelola_id,judul,cerita,kategori,lokasi,target_dana,terk
 
 -- SEED DONASI
 INSERT INTO donasi (kampanye_id,donatur_id,nominal,metode,pesan,bukti_path,status) VALUES
-(1,3,500000,'Rekening','Semoga cepat pulih ya!','uploads/bukti/sample.jpg','verified'),
-(1,4,250000,'QRIS','Ikut berdoa untuk korban','uploads/bukti/sample.jpg','pending'),
-(1,5,1000000,'E-Wallet','','uploads/bukti/sample.jpg','pending'),
-(1,3,100000,'Rekening','Semangat para relawan!','uploads/bukti/sample.jpg','rejected'),
-(2,4,200000,'QRIS','Bismillah semoga bermanfaat','uploads/bukti/sample.jpg','verified'),
-(2,5,300000,'Rekening','','uploads/bukti/sample.jpg','pending'),
-(3,3,150000,'E-Wallet','Untuk adik-adik yang butuh ilmu','uploads/bukti/sample.jpg','verified'),
-(4,4,500000,'Rekening','Semoga airnya cukup','uploads/bukti/sample.jpg','pending');
+(1,3,500000,'Rekening','Semoga cepat pulih ya!',NULL,'verified'),
+(1,4,250000,'QRIS','Ikut berdoa untuk korban',NULL,'pending'),
+(1,5,1000000,'E-Wallet','',NULL,'pending'),
+(1,3,100000,'Rekening','Semangat para relawan!',NULL,'rejected'),
+(2,4,200000,'QRIS','Bismillah semoga bermanfaat',NULL,'verified'),
+(2,5,300000,'Rekening','',NULL,'pending'),
+(3,3,150000,'E-Wallet','Untuk adik-adik yang butuh ilmu',NULL,'verified'),
+(4,4,500000,'Rekening','Semoga airnya cukup',NULL,'pending');

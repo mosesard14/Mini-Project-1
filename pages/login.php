@@ -11,6 +11,16 @@ $backUrl = null;
 $pageTitle = '';
 $error = '';
 
+// [FIX 2] Baca parameter redirect dari GET atau dari POST hidden input
+$redirect_raw = trim($_GET['redirect'] ?? $_POST['redirect'] ?? '');
+$redirect_id  = intval($_GET['id'] ?? $_POST['redirect_id'] ?? 0);
+
+// Whitelist: hanya nama file .php tanpa path/URL absolut
+$redirect = '';
+if ($redirect_raw && preg_match('/^[a-zA-Z0-9_\-]+\.php$/', $redirect_raw)) {
+    $redirect = $redirect_raw;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uname = trim($_POST['username'] ?? '');
     $pass  = trim($_POST['password'] ?? '');
@@ -28,7 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role']     = $row['role'];
             $_SESSION['avatar']   = '../' . $row['foto_profil'];
             $_SESSION['nama']     = $row['nama_lengkap'] ?? $row['username'];
-            header('Location: ' . ($row['role'] === 'pengelola' ? 'kelola_kampanye.php' : 'main.php'));
+
+            // [FIX 2] Arahkan ke redirect jika valid, atau ke default
+            if ($redirect) {
+                $dest = $redirect;
+                if ($redirect_id > 0) $dest .= '?id=' . $redirect_id;
+                header('Location: ' . $dest);
+            } else {
+                header('Location: ' . ($row['role'] === 'pengelola' ? 'kelola_kampanye.php' : 'main.php'));
+            }
             exit();
         } else {
             $error = 'Username atau password salah.';
@@ -46,228 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masuk — DonasiKu</title>
     <link rel="stylesheet" href="../style/global.css">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .login-wrap {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-
-        .login-card {
-            display: flex;
-            width: 100%;
-            max-width: 820px;
-            min-height: 460px;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            animation: fadeInUp .5s ease;
-        }
-
-        .login-left {
-            background: white;
-            flex: 1;
-            padding: 56px 48px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .logo-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 34px;
-        }
-
-        .logo-row .dot {
-            width: 9px;
-            height: 9px;
-            background: var(--green-primary);
-            border-radius: 50%;
-        }
-
-        .logo-row span {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            color: var(--green-primary);
-        }
-
-        .login-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 30px;
-            font-weight: 800;
-            font-style: italic;
-            color: var(--green-primary);
-            margin-bottom: 28px;
-        }
-
-        .fgl {
-            margin-bottom: 18px;
-        }
-
-        .fgl label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--gray-muted);
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            margin-bottom: 6px;
-        }
-
-        .fgl input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1.5px solid var(--gray-border);
-            border-radius: var(--radius-sm);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            background: #f9faf9;
-            outline: none;
-            transition: var(--transition);
-            color: #333;
-        }
-
-        .fgl input:focus {
-            border-color: var(--green-primary);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(45, 138, 82, .12);
-        }
-
-        .btn-masuk {
-            width: 100%;
-            padding: 13px;
-            background: var(--green-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-sm);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 15px;
-            font-style: italic;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: var(--transition);
-            box-shadow: 0 3px 12px rgba(45, 138, 82, .30);
-        }
-
-        .btn-masuk:hover {
-            background: var(--green-dark);
-            transform: translateY(-1px);
-        }
-
-        .error-msg {
-            background: #fee2e2;
-            color: #dc2626;
-            border-radius: var(--radius-sm);
-            padding: 10px 14px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .hint-box {
-            background: var(--green-light);
-            border-radius: var(--radius-sm);
-            padding: 10px 14px;
-            font-size: 12px;
-            color: var(--green-dark);
-            margin-top: 14px;
-        }
-
-        .hint-box b {
-            font-weight: 800;
-        }
-
-        .login-right {
-            width: 42%;
-            background: linear-gradient(145deg, var(--green-dark) 0%, var(--green-darker) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 48px 36px;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-right::before {
-            content: '';
-            position: absolute;
-            width: 280px;
-            height: 280px;
-            background: rgba(255, 255, 255, .04);
-            border-radius: 50%;
-            top: -80px;
-            right: -80px;
-        }
-
-        .green-chip {
-            display: inline-block;
-            background: rgba(127, 255, 168, .15);
-            border: 1px solid rgba(127, 255, 168, .30);
-            color: #7FFFA8;
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .welcome-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 46px;
-            font-weight: 900;
-            font-style: italic;
-            line-height: 1.05;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .welcome-text {
-            font-size: 13px;
-            line-height: 1.7;
-            opacity: .85;
-            position: relative;
-            z-index: 1;
-        }
-
-        @media(max-width:640px) {
-            .login-card {
-                flex-direction: column;
-            }
-
-            .login-right {
-                width: 100%;
-                min-height: 160px;
-            }
-
-            .login-left {
-                padding: 36px 24px;
-            }
-
-            .welcome-title {
-                font-size: 32px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../style/login.css">
 </head>
 
 <body>
@@ -281,6 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1 class="login-title">Masuk</h1>
                 <?php if ($error): ?><div class="error-msg">⚠️ <?= htmlspecialchars($error) ?></div><?php endif; ?>
                 <form method="POST" novalidate>
+                    <!-- [FIX 2] Pertahankan redirect lewat hidden input -->
+                    <?php if ($redirect): ?>
+                        <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
+                    <?php endif; ?>
+                    <?php if ($redirect_id > 0): ?>
+                        <input type="hidden" name="redirect_id" value="<?= $redirect_id ?>">
+                    <?php endif; ?>
                     <div class="fgl">
                         <label>Username</label>
                         <input type="text" name="username" placeholder="Masukkan username" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>" required>
@@ -291,14 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <button type="submit" class="btn-masuk">Masuk</button>
                 </form>
-                <div class="hint-box">
-                    <b>Akun demo:</b><br>
-                    Pengelola: <b>pengelola1</b> / password<br>
-                    Donatur: <b>donatur1</b> / password
-                </div>
+
             </div>
             <div class="login-right">
-                <div class="green-chip">✦ Trusted Platform</div>
+                <div class="green-chip">Trusted Platform</div>
                 <h2 class="welcome-title">Selamat<br>Datang.</h2>
                 <p class="welcome-text">Bergabunglah dan mulai<br>membuka atau berdonasi<br>untuk kampanye yang bermakna.</p>
             </div>

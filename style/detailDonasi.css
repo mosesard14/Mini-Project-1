@@ -1,0 +1,238 @@
+body {
+            background: var(--gray-bg);
+        }
+
+        .pg {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        .hero {
+            position: relative;
+            height: 260px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-md);
+            animation: fadeInUp .4s ease;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(.70);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .55) 100%);
+        }
+
+        .hero-body {
+            position: absolute;
+            bottom: 22px;
+            left: 24px;
+            right: 24px;
+            z-index: 1;
+        }
+
+        .hero-body h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            font-weight: 900;
+            font-style: italic;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+            margin-bottom: 8px;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hbadge {
+            background: rgba(255, 255, 255, .18);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, .4);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .hero-donate-btn {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            z-index: 2;
+        }
+
+        /* two col */
+        .two-col {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        @media(max-width:760px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sc {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            animation: fadeInUp .5s ease;
+        }
+
+        .sc-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1.5px solid var(--gray-border);
+        }
+
+        /* progress */
+        .prog-amt {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--green-primary);
+            margin-bottom: 4px;
+        }
+
+        .prog-target {
+            font-size: 14px;
+            color: var(--gray-muted);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .prog-pct {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--green-primary);
+            text-align: right;
+            margin-top: 4px;
+        }
+
+        /* penyelenggara */
+        .org-bar {
+            background: var(--green-light);
+            border-left: 4px solid var(--green-primary);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            font-size: 13px;
+            color: var(--gray-text);
+            margin-bottom: 12px;
+        }
+
+        .org-bar strong {
+            color: var(--green-primary);
+        }
+
+        /* metode pembayaran */
+        .pay-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pay-item {
+            background: #f9faf9;
+            border: 1.5px solid var(--gray-border);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+        }
+
+        .pay-item .pay-name {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--green-primary);
+            margin-bottom: 5px;
+            letter-spacing: .4px;
+        }
+
+        .pay-item .pay-val {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            word-break: break-all;
+        }
+
+        .pay-item img {
+            width: 110px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 6px;
+        }
+
+        /* donatur */
+        .don-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .don-item:last-child {
+            border-bottom: none;
+        }
+
+        .don-av {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .don-name {
+            font-weight: 700;
+            font-size: 13px;
+            color: #1a2319;
+        }
+
+        .don-pesan {
+            font-size: 11px;
+            color: var(--gray-muted);
+            font-style: italic;
+        }
+
+        .don-amt {
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--green-primary);
+            margin-left: auto;
+        }
+
+        /* cerita */
+        .cerita-text {
+            font-size: 14px;
+            line-height: 1.9;
+            color: var(--gray-text);
+        }
+
+        .cerita-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }

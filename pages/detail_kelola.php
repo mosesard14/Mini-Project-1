@@ -71,21 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'edit'
     }
 }
 
-// ── HANDLE GET: Verifikasi donasi ──────────────────────────
-if (isset($_GET['verify'], $_GET['did'])) {
-    $don_id = intval($_GET['did']);
-    $action = $_GET['verify'] === 'accept' ? 'verified' : 'rejected';
-    // Ambil nominal
+// ── HANDLE POST: Verifikasi donasi ──────────────────────────
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verify'], $_POST['did'])) {
+    $don_id = intval($_POST['did']);
+    $action = $_POST['verify'] === 'accept' ? 'verified' : 'rejected';
+    // [FIX 4+5] Hanya ambil donasi yang masih pending — cegah dobel proses
     $don = mysqli_fetch_assoc(mysqli_query(
         $koneksi,
         "SELECT d.nominal FROM donasi d
         JOIN kampanye k ON k.id=d.kampanye_id
-        WHERE d.id=$don_id AND k.pengelola_id=$user_id LIMIT 1"
+        WHERE d.id=$don_id AND k.pengelola_id=$user_id AND d.status='pending' LIMIT 1"
     ));
     if ($don) {
         mysqli_query(
             $koneksi,
-            "UPDATE donasi SET status='$action' WHERE id=$don_id"
+            "UPDATE donasi SET status='$action' WHERE id=$don_id AND status='pending'"
         );
         if ($action === 'verified') {
             $nom = (int)$don['nominal'];
@@ -94,7 +94,6 @@ if (isset($_GET['verify'], $_GET['did'])) {
                 "UPDATE kampanye SET terkumpul = terkumpul + $nom WHERE id=$kamp_id"
             );
         }
-        // Refresh kamp
         $kamp = mysqli_fetch_assoc(mysqli_query(
             $koneksi,
             "SELECT * FROM kampanye WHERE id=$kamp_id LIMIT 1"
@@ -104,8 +103,8 @@ if (isset($_GET['verify'], $_GET['did'])) {
     exit();
 }
 
-// ── HANDLE GET: Hapus kampanye ─────────────────────────────
-if (isset($_GET['action']) && $_GET['action'] === 'delete') {
+// ── HANDLE POST: Hapus kampanye ─────────────────────────────
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
     if ((int)$kamp['terkumpul'] >= 10000) {
         header("Location: detail_kelola.php?id=$kamp_id&msg=cannot_delete");
         exit();
@@ -149,479 +148,7 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Kampanye — DonasiKu</title>
     <link rel="stylesheet" href="../style/global.css">
-    <style>
-        body {
-            background: var(--gray-bg);
-        }
-
-        .pg {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 28px 20px 70px;
-        }
-
-        /* Flash */
-        .flash {
-            border-radius: var(--radius-sm);
-            padding: 11px 16px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            animation: fadeInUp .3s ease;
-        }
-
-        .flash.green {
-            background: var(--green-light);
-            border-left: 4px solid var(--green-primary);
-            color: var(--green-dark);
-        }
-
-        .flash.red {
-            background: #fee2e2;
-            border-left: 4px solid #dc2626;
-            color: #dc2626;
-        }
-
-        /* Hero */
-        .camp-hero {
-            position: relative;
-            height: 220px;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            margin-bottom: 22px;
-            box-shadow: var(--shadow-md);
-            animation: fadeInUp .4s ease;
-        }
-
-        .camp-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(.68);
-        }
-
-        .camp-hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, .05) 30%, rgba(0, 0, 0, .60) 100%);
-        }
-
-        .camp-hero-body {
-            position: absolute;
-            bottom: 20px;
-            left: 22px;
-            right: 22px;
-            z-index: 1;
-        }
-
-        .camp-hero-body h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 19px;
-            font-weight: 900;
-            font-style: italic;
-            color: white;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, .4);
-            margin-bottom: 8px;
-        }
-
-        .hbadges {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .hb {
-            background: rgba(255, 255, 255, .18);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, .4);
-            color: white;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-        }
-
-        /* Two col */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 20px;
-            align-items: start;
-        }
-
-        @media(max-width:760px) {
-            .two-col {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Section card */
-        .sc {
-            background: white;
-            border-radius: var(--radius-md);
-            padding: 22px 24px;
-            box-shadow: var(--shadow-sm);
-            margin-bottom: 20px;
-            animation: fadeInUp .5s ease;
-        }
-
-        .sc-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--green-primary);
-            margin-bottom: 14px;
-            padding-bottom: 10px;
-            border-bottom: 1.5px solid var(--gray-border);
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        /* Progress */
-        .prog-amt {
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--green-primary);
-        }
-
-        .prog-target {
-            font-size: 13px;
-            color: var(--gray-muted);
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .prog-pct {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--green-primary);
-            text-align: right;
-            margin-top: 4px;
-            margin-bottom: 16px;
-        }
-
-        /* Summary boxes */
-        .sum-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-        }
-
-        .sum-box {
-            border-radius: 10px;
-            padding: 11px 12px;
-        }
-
-        .sum-box.green {
-            background: var(--green-light);
-        }
-
-        .sum-box.yellow {
-            background: #fef9c3;
-        }
-
-        .sum-box.red {
-            background: #fee2e2;
-        }
-
-        .sum-lbl {
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: .3px;
-            margin-bottom: 3px;
-        }
-
-        .sum-box.green .sum-lbl {
-            color: var(--green-primary);
-        }
-
-        .sum-box.yellow .sum-lbl {
-            color: #b45309;
-        }
-
-        .sum-box.red .sum-lbl {
-            color: #dc2626;
-        }
-
-        .sum-val {
-            font-size: 13px;
-            font-weight: 800;
-            color: #1a2319;
-        }
-
-        /* Donasi list */
-        .don-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--gray-border);
-        }
-
-        .don-item:last-child {
-            border-bottom: none;
-        }
-
-        .don-av {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .don-body {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .don-name {
-            font-weight: 700;
-            font-size: 13px;
-            color: #1a2319;
-        }
-
-        .don-email {
-            font-size: 11px;
-            color: var(--gray-muted);
-        }
-
-        .don-pesan {
-            font-size: 12px;
-            color: var(--gray-text);
-            font-style: italic;
-            margin-top: 2px;
-        }
-
-        .don-right {
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .don-nom {
-            font-weight: 800;
-            font-size: 13px;
-            color: var(--green-primary);
-        }
-
-        .don-date {
-            font-size: 10px;
-            color: var(--gray-muted);
-            margin-bottom: 5px;
-        }
-
-        .don-actions {
-            display: flex;
-            gap: 5px;
-            justify-content: flex-end;
-            margin-top: 5px;
-        }
-
-        .don-actions a,
-        .don-actions button {
-            padding: 4px 10px;
-            border-radius: 6px;
-            border: none;
-            font-size: 11px;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: var(--transition);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .btn-acc {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .btn-acc:hover {
-            background: #15803d;
-            color: white;
-        }
-
-        .btn-rej {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        .btn-rej:hover {
-            background: #dc2626;
-            color: white;
-        }
-
-        .btn-bukti-sm {
-            background: #e0f0ff;
-            color: #2563eb;
-        }
-
-        .btn-bukti-sm:hover {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* Status dot */
-        .sdot {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 20px;
-        }
-
-        .sdot.verified {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .sdot.pending {
-            background: #fef9c3;
-            color: #b45309;
-        }
-
-        .sdot.rejected {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-
-        /* Edit form */
-        .fg {
-            margin-bottom: 14px;
-        }
-
-        .fg label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--green-primary);
-            text-transform: uppercase;
-            letter-spacing: .3px;
-            margin-bottom: 5px;
-        }
-
-        .fg input,
-        .fg select,
-        .fg textarea {
-            width: 100%;
-            padding: 10px 13px;
-            border: 1.5px solid var(--gray-border);
-            border-radius: var(--radius-sm);
-            font-family: 'Poppins', sans-serif;
-            font-size: 13px;
-            background: #f9faf9;
-            color: #333;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .fg input:focus,
-        .fg select:focus,
-        .fg textarea:focus {
-            border-color: var(--green-primary);
-            background: white;
-            box-shadow: 0 0 0 3px rgba(45, 138, 82, .10);
-        }
-
-        .fg textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .fg-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        @media(max-width:500px) {
-            .fg-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Danger zone */
-        .danger-zone {
-            background: #fff5f5;
-            border: 1.5px solid #fecaca;
-            border-radius: var(--radius-md);
-            padding: 18px 22px;
-        }
-
-        .danger-zone h4 {
-            color: #dc2626;
-            font-size: 13px;
-            font-weight: 800;
-            margin-bottom: 5px;
-        }
-
-        .danger-zone p {
-            font-size: 12px;
-            color: #9a3535;
-            margin-bottom: 12px;
-        }
-
-        /* Modal bukti */
-        .modal-ov {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .5);
-            z-index: 400;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-ov.show {
-            display: flex;
-        }
-
-        .modal-box {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            max-width: 460px;
-            width: 100%;
-            box-shadow: var(--shadow-lg);
-            animation: fadeInUp .3s ease;
-        }
-
-        .modal-box h3 {
-            font-size: 15px;
-            font-weight: 800;
-            color: var(--green-primary);
-            margin-bottom: 12px;
-        }
-
-        .modal-box img {
-            width: 100%;
-            border-radius: 10px;
-            max-height: 340px;
-            object-fit: contain;
-        }
-
-        /* err list */
-        .err-list {
-            background: #fee2e2;
-            border-left: 4px solid #dc2626;
-            border-radius: var(--radius-sm);
-            padding: 11px 16px;
-            margin-bottom: 14px;
-        }
-
-        .err-list li {
-            font-size: 12px;
-            color: #dc2626;
-            font-weight: 600;
-            list-style: none;
-            margin-bottom: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="../style/detail_kelola.css">
 </head>
 
 <body>
@@ -712,10 +239,16 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                                                 onclick="showBukti('<?= htmlspecialchars('../' . $d['bukti_path']) ?>')">Bukti</button>
                                         <?php endif; ?>
                                         <?php if ($d['status'] === 'pending'): ?>
-                                            <a href="detail_kelola.php?id=<?= $kamp_id ?>&verify=accept&did=<?= $d['id'] ?>"
-                                                class="btn-acc" onclick="return confirm('Terima donasi ini?')">Terima</a>
-                                            <a href="detail_kelola.php?id=<?= $kamp_id ?>&verify=reject&did=<?= $d['id'] ?>"
-                                                class="btn-rej" onclick="return confirm('Tolak donasi ini?')">Tolak</a>
+                                            <form method="POST" style="display:inline;" onsubmit="return confirm('Terima donasi ini?')">
+                                                <input type="hidden" name="verify" value="accept">
+                                                <input type="hidden" name="did" value="<?= $d['id'] ?>">
+                                                <button type="submit" class="btn-acc">Terima</button>
+                                            </form>
+                                            <form method="POST" style="display:inline;" onsubmit="return confirm('Tolak donasi ini?')">
+                                                <input type="hidden" name="verify" value="reject">
+                                                <input type="hidden" name="did" value="<?= $d['id'] ?>">
+                                                <button type="submit" class="btn-rej">Tolak</button>
+                                            </form>
                                         <?php endif; ?>
                                     </div>
                                 </div>
@@ -786,11 +319,12 @@ $all_metode = ['Bencana', 'Pendidikan', 'Kesehatan', 'FasilitasUmum'];
                 <div class="danger-zone">
                     <h4>Hapus Kampanye</h4>
                     <p>Kampanye yang sudah memiliki dana terkumpul ≥ Rp 10.000 tidak dapat dihapus.</p>
-                    <a href="detail_kelola.php?id=<?= $kamp_id ?>&action=delete"
-                        class="btn btn-danger" style="width:100%;display:block;text-align:center;border-radius:var(--radius-sm);"
-                        onclick="return confirm('Yakin hapus kampanye ini? Tindakan tidak dapat dibatalkan.')">
-                        Hapus Kampanye
-                    </a>
+                    <form method="POST" onsubmit="return confirm('Yakin hapus kampanye ini? Tindakan tidak dapat dibatalkan.')">
+                        <input type="hidden" name="action" value="delete">
+                        <button type="submit" class="btn btn-danger" style="width:100%;display:block;text-align:center;border-radius:var(--radius-sm);">
+                            Hapus Kampanye
+                        </button>
+                    </form>
                 </div>
             </div>
 
