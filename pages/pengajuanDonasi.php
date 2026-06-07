@@ -531,7 +531,7 @@ $pageTitle = 'Form Donasi';
                             <!-- Nominal -->
                             <div class="fg">
                                 <label>Nominal Donasi <span style="color:var(--red-accent)">*</span></label>
-                                <input type="number" name="nominal" min="10000" placeholder="Min. Rp 10.000"
+                                <input type="number" name="nominal" min="10000" step="1000" placeholder="Min. Rp 10.000"
                                     value="<?= htmlspecialchars($_POST['nominal'] ?? '') ?>">
                             </div>
 
