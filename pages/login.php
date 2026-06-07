@@ -11,11 +11,11 @@ $backUrl = null;
 $pageTitle = '';
 $error = '';
 
-// [FIX 2] Baca parameter redirect dari GET atau dari POST hidden input
+
 $redirect_raw = trim($_GET['redirect'] ?? $_POST['redirect'] ?? '');
 $redirect_id  = intval($_GET['id'] ?? $_POST['redirect_id'] ?? 0);
 
-// Whitelist: hanya nama file .php tanpa path/URL absolut
+
 $redirect = '';
 if ($redirect_raw && preg_match('/^[a-zA-Z0-9_\-]+\.php$/', $redirect_raw)) {
     $redirect = $redirect_raw;
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['avatar']   = '../' . $row['foto_profil'];
             $_SESSION['nama']     = $row['nama_lengkap'] ?? $row['username'];
 
-            // [FIX 2] Arahkan ke redirect jika valid, atau ke default
+
             if ($redirect) {
                 $dest = $redirect;
                 if ($redirect_id > 0) $dest .= '?id=' . $redirect_id;
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1 class="login-title">Masuk</h1>
                 <?php if ($error): ?><div class="error-msg">⚠️ <?= htmlspecialchars($error) ?></div><?php endif; ?>
                 <form method="POST" novalidate>
-                    <!-- [FIX 2] Pertahankan redirect lewat hidden input -->
+
                     <?php if ($redirect): ?>
                         <input type="hidden" name="redirect" value="<?= htmlspecialchars($redirect) ?>">
                     <?php endif; ?>
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="fgl">
                         <label>Password</label>
-                        <input type="password" name="password" placeholder="••••••••" required>
+                        <input type="password" name="password" required>
                     </div>
                     <button type="submit" class="btn-masuk">Masuk</button>
                 </form>

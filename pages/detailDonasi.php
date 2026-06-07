@@ -2,7 +2,7 @@
 session_start();
 include '../koneksi.php';
 
-// [FIX 1] Gerbang login — halaman detail hanya untuk user yang sudah login
+
 if (!isset($_SESSION['user_id'])) {
     $id_param = intval($_GET['id'] ?? 0);
     header('Location: login.php?redirect=detailDonasi.php&id=' . $id_param);
@@ -81,7 +81,7 @@ $pageTitle = 'Detail Kampanye';
             </div>
         </div>
 
-        <!-- ORG BAR -->
+
         <div class="org-bar">
             Penyelenggara: <strong><?= htmlspecialchars($row['nama_org'] ?? $row['pnm']) ?></strong>
         </div>
@@ -90,7 +90,7 @@ $pageTitle = 'Detail Kampanye';
 
             <!-- KIRI -->
             <div>
-                <!-- PROGRESS -->
+                <!-- progres bar -->
                 <div class="sc">
                     <div class="sc-title">Dana Terkumpul</div>
                     <div class="prog-amt"><?= rupiah((int)$row['terkumpul']) ?></div>

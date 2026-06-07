@@ -47,7 +47,7 @@ if ($lokasi)   $where .= " AND k.lokasi LIKE '%" . esc($lokasi) . "%'";
 $total_row = mysqli_fetch_row(mysqli_query($koneksi, "SELECT COUNT(*) FROM kampanye k $where"));
 $total_before_filter     = (int)($total_row[0] ?? 0);
 
-// Ambil semua hasil untuk di-filter rentang dana
+// Ambil data utk di filter 
 $result_all = mysqli_query(
     $koneksi,
     "SELECT k.*, u.nama_org, u.username AS pnm
@@ -59,7 +59,7 @@ $result_all = mysqli_query(
 
 $all_campaigns = [];
 while ($r = mysqli_fetch_assoc($result_all)) {
-    // Filter berdasarkan rentang dana jika dipilih
+    // Filter rentang dana 
     if ($rentang && !checkRentangDana($r['target_dana'], $rentang)) {
         continue;
     }
@@ -70,7 +70,7 @@ $total = count($all_campaigns);
 $pages = max(1, ceil($total / $per_page));
 $campaigns = array_slice($all_campaigns, $offset, $per_page);
 
-// Ambil daftar lokasi unik
+// Ambil daftar lokasi dr db
 $lok_result = mysqli_query($koneksi, "SELECT DISTINCT k.lokasi FROM kampanye k WHERE k.status = 'aktif' AND k.deadline >= CURDATE() ORDER BY k.lokasi ASC");
 $lokasi_list = [];
 while ($r = mysqli_fetch_assoc($lok_result)) {
@@ -79,7 +79,7 @@ while ($r = mysqli_fetch_assoc($lok_result)) {
     }
 }
 
-// Kampanye milik pengelola (sidebar)
+// Kampanye(pengelola)
 $my_camps = [];
 if ($role === 'pengelola' && $user_id) {
     $res2 = mysqli_query(
@@ -117,7 +117,7 @@ $kat_list = ['Bencana' => 'Bencana Alam', 'Pendidikan' => 'Pendidikan', 'Kesehat
             </div>
         </header>
 
-        <!-- KAMPANYE SAYA (pengelola only) -->
+        <!-- KAMPANYE SAYA (pengelola) -->
         <?php if ($role === 'pengelola' && $my_camps): ?>
             <section class="my-camps">
                 <h2 class="section-title">Kampanye Saya</h2>
@@ -139,7 +139,6 @@ $kat_list = ['Bencana' => 'Bencana Alam', 'Pendidikan' => 'Pendidikan', 'Kesehat
 
         <!-- SEARCH BAR -->
         <form method="GET" action="main.php">
-            <?php if ($kategori): ?><input type="hidden" name="kat" value="<?= htmlspecialchars($kategori) ?>"><?php endif; ?>
             <div class="search-bar">
                 <input type="text" name="q" placeholder="Cari judul, kategori, lokasi, atau tanggal..."
                     value="<?= htmlspecialchars($search) ?>">
@@ -148,6 +147,19 @@ $kat_list = ['Bencana' => 'Bencana Alam', 'Pendidikan' => 'Pendidikan', 'Kesehat
 
             <!-- FILTER DROPDOWN -->
             <div class="filter-row">
+                <!-- Filter Kategori -->
+                <div class="filter-group">
+                    <label for="filter-kategori">Kategori:</label>
+                    <select name="kat" id="filter-kategori">
+                        <option value="">Semua Kategori</option>
+                        <?php foreach ($kat_list as $k => $lbl): ?>
+                            <option value="<?= htmlspecialchars($k) ?>" <?= $kategori === $k ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($lbl) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
                 <!-- Filter Lokasi -->
                 <div class="filter-group">
                     <label for="filter-lokasi">Lokasi:</label>
@@ -178,19 +190,10 @@ $kat_list = ['Bencana' => 'Bencana Alam', 'Pendidikan' => 'Pendidikan', 'Kesehat
                 </div>
             </div>
         </form>
-
-        <!-- KATEGORI TABS -->
-        <div class="kat-tabs">
-            <a href="main.php?q=<?= urlencode($search) ?>" class="kat-tab <?= !$kategori ? 'active' : '' ?>">Semua</a>
-            <?php foreach ($kat_list as $k => $lbl): ?>
-                <a href="main.php?kat=<?= $k ?>&q=<?= urlencode($search) ?>"
-                    class="kat-tab <?= $kategori === $k ? 'active' : '' ?>"><?= $lbl ?></a>
-            <?php endforeach; ?>
-        </div>
-
+        <br>
         <h3 class="section-title">Temukan Kampanye <span style="font-size:13px;color:var(--gray-muted);font-weight:500;">(<?= $total ?> kampanye aktif)</span></h3>
 
-        <!-- CARDS -->
+        <!-- Kampanye card -->
         <?php if (empty($campaigns)): ?>
             <div class="empty-state">
                 <div class="ei">🔍</div>

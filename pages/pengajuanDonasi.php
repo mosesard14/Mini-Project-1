@@ -169,13 +169,7 @@ $pageTitle = 'Form Donasi';
                                 <div class="anon-row">
                                     <input type="text" id="namaInput" name="nama_donatur"
                                         value="<?= htmlspecialchars($user['nama_lengkap'] ?: $user['username']) ?>">
-                                    <label class="toggle-lbl">
-                                        Anonim
-                                        <label class="sw">
-                                            <input type="checkbox" id="anonChk" onchange="toggleAnon(this)">
-                                            <span class="sl"></span>
-                                        </label>
-                                    </label>
+
                                 </div>
                             </div>
 
